@@ -3,7 +3,6 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, Sparkles, MessageCircle } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { ParticleBackground } from "@/components/ui/ParticleBackground";
 import { ScrollIndicator } from "@/components/ui/ScrollIndicator";
 import { getWhatsAppUrl } from "@/config/contactInfo";
 
@@ -28,30 +27,22 @@ export const HeroSection = () => {
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
       {/* Animated Gradient Background */}
       <div className="absolute inset-0 bg-gradient-to-br from-background via-background to-primary/5 animate-gradient" />
-      
-      {/* Particle Effect */}
-/*
-      <ParticleBackground particleCount={60} />
-      */
+
       {/* Background Effects */}
       <div className="absolute inset-0 bg-hero-glow opacity-50" />
+
       <motion.div 
-        animate={{ 
-          scale: [1, 1.1, 1],
-          opacity: [0.1, 0.15, 0.1]
-        }}
+        animate={{ scale: [1, 1.1, 1], opacity: [0.1, 0.15, 0.1] }}
         transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
         className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-primary/20 rounded-full blur-[100px]" 
       />
+
       <motion.div 
-        animate={{ 
-          scale: [1.1, 1, 1.1],
-          opacity: [0.1, 0.15, 0.1]
-        }}
+        animate={{ scale: [1.1, 1, 1.1], opacity: [0.1, 0.15, 0.1] }}
         transition={{ duration: 8, repeat: Infinity, ease: "easeInOut", delay: 2 }}
         className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-accent/20 rounded-full blur-[100px]" 
       />
-      
+
       {/* Tech Grid Pattern */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,hsl(var(--primary)/0.10)_1px,transparent_1px),linear-gradient(to_bottom,hsl(var(--primary)/0.10)_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_0%,#000_70%,transparent_110%)]" />
 
@@ -117,11 +108,7 @@ export const HeroSection = () => {
             transition={{ duration: 0.6, delay: 0.4 }}
             className="flex flex-col sm:flex-row items-center justify-center gap-4"
           >
-            <Button 
-              size="lg" 
-              asChild 
-              className="group px-8 relative overflow-hidden"
-            >
+            <Button size="lg" asChild className="group px-8 relative overflow-hidden">
               <Link to="/contact">
                 <span className="relative z-10">Get a Proposal</span>
                 <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1 relative z-10" />
@@ -131,10 +118,11 @@ export const HeroSection = () => {
                 />
               </Link>
             </Button>
-            <Button 
-              size="lg" 
-              variant="outline" 
-              asChild 
+
+            <Button
+              size="lg"
+              variant="outline"
+              asChild
               className="group border-primary/50 hover:border-primary hover:bg-primary/5"
             >
               <a
@@ -170,8 +158,8 @@ export const HeroSection = () => {
               { value: "100%", label: "Satisfaction" },
               { value: "24/7", label: "Support" },
             ].map((stat, index) => (
-              <motion.div 
-                key={index} 
+              <motion.div
+                key={index}
                 className="text-center"
                 whileHover={{ scale: 1.05 }}
               >
