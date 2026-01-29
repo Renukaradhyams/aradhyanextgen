@@ -1,6 +1,11 @@
 import { Link } from "react-router-dom";
-import { Zap, Mail, Phone, MapPin, ArrowUpRight } from "lucide-react";
+import { motion } from "framer-motion";
+import { Zap, Mail, Phone, MapPin, ArrowUpRight, Send } from "lucide-react";
+import { useState } from "react";
 import { contactInfo } from "@/config/contactInfo";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { useToast } from "@/hooks/use-toast";
 
 const footerLinks = {
   company: [
@@ -15,15 +20,45 @@ const footerLinks = {
     { label: "Business Websites", href: "/solutions" },
     { label: "E-commerce", href: "/solutions" },
   ],
+  social: [
+    { label: "LinkedIn", href: "https://www.linkedin.com/in/renukaradhya-m-s" },
+    { label: "GitHub", href: "https://github.com/renukaradhya" },
+    { label: "Twitter", href: "https://twitter.com" },
+  ],
 };
 
 export const Footer = () => {
+  const [email, setEmail] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const { toast } = useToast();
+
+  const handleNewsletterSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!email) return;
+    
+    setIsSubmitting(true);
+    
+    // Simulate API call
+    await new Promise(resolve => setTimeout(resolve, 1000));
+    
+    toast({
+      title: "Subscribed! 🎉",
+      description: "You'll receive our latest updates and news.",
+    });
+    
+    setEmail("");
+    setIsSubmitting(false);
+  };
+
   return (
-    <footer className="border-t border-border bg-card/30">
-      <div className="container mx-auto px-4 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+    <footer className="relative border-t border-border overflow-hidden">
+      {/* Gradient background */}
+      <div className="absolute inset-0 bg-gradient-to-t from-card/80 to-background" />
+      
+      <div className="container mx-auto px-4 py-16 relative z-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12">
           {/* Brand */}
-          <div className="space-y-4">
+          <div className="lg:col-span-2 space-y-4">
             <Link to="/" className="flex items-center gap-2">
               <div className="w-10 h-10 rounded-lg bg-gradient-primary flex items-center justify-center">
                 <Zap className="w-5 h-5 text-primary-foreground" />
@@ -37,10 +72,27 @@ export const Footer = () => {
                 </span>
               </div>
             </Link>
-            <p className="text-muted-foreground text-sm leading-relaxed">
+            <p className="text-muted-foreground text-sm leading-relaxed max-w-xs">
               From Idea to Online Presence. Building next-generation websites
               that convert visitors into customers.
             </p>
+            
+            {/* Newsletter */}
+            <div className="pt-4">
+              <p className="text-sm font-medium mb-3">Subscribe to our newsletter</p>
+              <form onSubmit={handleNewsletterSubmit} className="flex gap-2">
+                <Input
+                  type="email"
+                  placeholder="Enter your email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className="bg-background/50"
+                />
+                <Button type="submit" size="icon" disabled={isSubmitting}>
+                  <Send className="w-4 h-4" />
+                </Button>
+              </form>
+            </div>
           </div>
 
           {/* Company Links */}
@@ -106,6 +158,25 @@ export const Footer = () => {
                 <span>{contactInfo.location}</span>
               </li>
             </ul>
+            
+            {/* Social Links */}
+            <div className="mt-6">
+              <p className="text-sm font-medium mb-3">Follow Us</p>
+              <div className="flex gap-2">
+                {footerLinks.social.map((social) => (
+                  <motion.a
+                    key={social.label}
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    whileHover={{ scale: 1.1 }}
+                    className="w-10 h-10 rounded-lg bg-card border border-border hover:border-primary hover:bg-primary/10 flex items-center justify-center transition-all"
+                  >
+                    <span className="text-xs font-medium">{social.label[0]}</span>
+                  </motion.a>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
 
