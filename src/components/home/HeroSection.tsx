@@ -30,8 +30,9 @@ export const HeroSection = () => {
       <div className="absolute inset-0 bg-gradient-to-br from-background via-background to-primary/5 animate-gradient" />
       
       {/* Particle Effect */}
+/*
       <ParticleBackground particleCount={60} />
-      
+      */
       {/* Background Effects */}
       <div className="absolute inset-0 bg-hero-glow opacity-50" />
       <motion.div 
@@ -52,7 +53,7 @@ export const HeroSection = () => {
       />
       
       {/* Tech Grid Pattern */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,hsl(var(--primary)/0.03)_1px,transparent_1px),linear-gradient(to_bottom,hsl(var(--primary)/0.03)_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_0%,#000_70%,transparent_110%)]" />
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,hsl(var(--primary)/0.10)_1px,transparent_1px),linear-gradient(to_bottom,hsl(var(--primary)/0.10)_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_0%,#000_70%,transparent_110%)]" />
 
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-4xl mx-auto text-center">
