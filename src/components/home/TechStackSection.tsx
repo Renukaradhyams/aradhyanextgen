@@ -1,44 +1,5 @@
 import { motion } from "framer-motion";
-import { Code2, Palette, Zap, Mail, Globe, Server } from "lucide-react";
-
-const technologies = [
-  {
-    icon: Code2,
-    name: "React.js",
-    description: "Modern UI library",
-    color: "from-cyan-500 to-blue-500",
-  },
-  {
-    icon: Palette,
-    name: "Tailwind CSS",
-    description: "Utility-first styling",
-    color: "from-teal-500 to-cyan-500",
-  },
-  {
-    icon: Zap,
-    name: "Framer Motion",
-    description: "Smooth animations",
-    color: "from-purple-500 to-pink-500",
-  },
-  {
-    icon: Mail,
-    name: "EmailJS",
-    description: "Form handling",
-    color: "from-orange-500 to-red-500",
-  },
-  {
-    icon: Globe,
-    name: "Netlify / Vercel",
-    description: "Fast hosting",
-    color: "from-green-500 to-emerald-500",
-  },
-  {
-    icon: Server,
-    name: "TypeScript",
-    description: "Type-safe code",
-    color: "from-blue-500 to-indigo-500",
-  },
-];
+import { getCoreTech, getTechByCategory } from "@/config/techStackConfig";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -54,9 +15,15 @@ const itemVariants = {
 };
 
 export const TechStackSection = () => {
+  const coreTech = getCoreTech();
+
   return (
     <section className="py-24 relative overflow-hidden">
-      <div className="absolute inset-0 bg-card/30" />
+      {/* Background with animated dots */}
+      <div className="absolute inset-0 bg-gradient-to-b from-background via-card/30 to-background" />
+      <div className="absolute inset-0 opacity-20">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,hsl(var(--primary)/0.3)_1px,transparent_0)] bg-[size:50px_50px]" />
+      </div>
       
       <div className="container mx-auto px-4 relative z-10">
         <motion.div
@@ -81,23 +48,57 @@ export const TechStackSection = () => {
           viewport={{ once: true }}
           className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6"
         >
-          {technologies.map((tech, index) => (
+          {coreTech.map((tech, index) => (
             <motion.div
-              key={index}
+              key={tech.id}
               variants={itemVariants}
-              whileHover={{ y: -5, scale: 1.02 }}
-              className="glass-card p-6 text-center group cursor-pointer"
+              whileHover={{ y: -8, scale: 1.05 }}
+              className="relative group"
             >
-              <div className={`w-14 h-14 mx-auto mb-4 rounded-xl bg-gradient-to-br ${tech.color} flex items-center justify-center group-hover:shadow-lg transition-shadow`}>
-                <tech.icon className="w-7 h-7 text-white" />
+              {/* Glow effect */}
+              <div 
+                className="absolute -inset-0.5 rounded-2xl opacity-0 group-hover:opacity-50 blur-sm transition-all duration-300"
+                style={{ backgroundColor: tech.color }}
+              />
+              
+              <div className="relative glass-card p-6 text-center h-full">
+                <div 
+                  className="w-14 h-14 mx-auto mb-4 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform"
+                  style={{ backgroundColor: `${tech.color}20` }}
+                >
+                  <span 
+                    className="text-xl font-bold"
+                    style={{ color: tech.color }}
+                  >
+                    {tech.name.slice(0, 2)}
+                  </span>
+                </div>
+                <h3 className="font-heading font-semibold text-sm mb-1 group-hover:text-primary transition-colors">
+                  {tech.name}
+                </h3>
+                <p className="text-muted-foreground text-xs capitalize">
+                  {tech.category}
+                </p>
               </div>
-              <h3 className="font-heading font-semibold text-sm mb-1">
-                {tech.name}
-              </h3>
-              <p className="text-muted-foreground text-xs">
-                {tech.description}
-              </p>
             </motion.div>
+          ))}
+        </motion.div>
+
+        {/* Category labels */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.3 }}
+          className="mt-12 flex flex-wrap justify-center gap-4"
+        >
+          {["frontend", "backend", "database", "cloud", "tools"].map((category) => (
+            <div 
+              key={category}
+              className="px-4 py-2 rounded-full bg-card border border-border text-sm text-muted-foreground capitalize"
+            >
+              {category}: {getTechByCategory(category as any).length}
+            </div>
           ))}
         </motion.div>
       </div>

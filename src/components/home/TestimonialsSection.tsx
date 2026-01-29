@@ -1,48 +1,26 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight, Star, Quote } from "lucide-react";
 import { Button } from "@/components/ui/button";
-
-const testimonials = [
-  {
-    name: "Rahul Sharma",
-    role: "Founder, TechStart",
-    content: "Professional team with a modern approach. They delivered exactly what we envisioned for our startup.",
-    rating: 5,
-  },
-  {
-    name: "Priya Patel",
-    role: "Owner, Style Boutique",
-    content: "Fast delivery and great design! Our new website has significantly increased customer inquiries.",
-    rating: 5,
-  },
-  {
-    name: "Amit Kumar",
-    role: "CEO, Digital Agency",
-    content: "The perfect website for our business. Clean code, beautiful design, and excellent support.",
-    rating: 5,
-  },
-  {
-    name: "Sneha Reddy",
-    role: "Freelance Designer",
-    content: "My portfolio looks absolutely stunning! They understood my vision and brought it to life perfectly.",
-    rating: 5,
-  },
-];
+import { getActiveTestimonials, testimonialSettings } from "@/config/testimonialsConfig";
 
 export const TestimonialsSection = () => {
   const [current, setCurrent] = useState(0);
   const [autoPlay, setAutoPlay] = useState(true);
+  const testimonials = getActiveTestimonials();
+  const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
     if (!autoPlay) return;
     
-    const timer = setInterval(() => {
+    intervalRef.current = setInterval(() => {
       setCurrent((prev) => (prev + 1) % testimonials.length);
-    }, 5000);
+    }, testimonialSettings.autoSlideInterval);
 
-    return () => clearInterval(timer);
-  }, [autoPlay]);
+    return () => {
+      if (intervalRef.current) clearInterval(intervalRef.current);
+    };
+  }, [autoPlay, testimonials.length]);
 
   const next = () => {
     setAutoPlay(false);
@@ -56,7 +34,9 @@ export const TestimonialsSection = () => {
 
   return (
     <section className="py-24 relative overflow-hidden">
+      {/* Blurred gradient background */}
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/5 to-transparent" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-primary/10 rounded-full blur-[100px]" />
       
       <div className="container mx-auto px-4 relative z-10">
         <motion.div
@@ -78,39 +58,53 @@ export const TestimonialsSection = () => {
           <AnimatePresence mode="wait">
             <motion.div
               key={current}
-              initial={{ opacity: 0, x: 50 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -50 }}
-              transition={{ duration: 0.3 }}
-              className="glass-card p-8 md:p-12 text-center"
+              initial={{ opacity: 0, x: 50, scale: 0.95 }}
+              animate={{ opacity: 1, x: 0, scale: 1 }}
+              exit={{ opacity: 0, x: -50, scale: 0.95 }}
+              transition={{ duration: 0.4 }}
+              className="relative"
             >
-              <Quote className="w-12 h-12 text-primary/30 mx-auto mb-6" />
-              
-              <p className="text-lg md:text-xl text-foreground mb-8 leading-relaxed">
-                "{testimonials[current].content}"
-              </p>
+              {/* Glass card with gradient border */}
+              <div className="gradient-border rounded-2xl">
+                <div className="glass-card p-8 md:p-12 text-center rounded-2xl">
+                  <Quote className="w-12 h-12 text-primary/30 mx-auto mb-6" />
+                  
+                  <p className="text-lg md:text-xl text-foreground mb-8 leading-relaxed font-medium">
+                    "{testimonials[current].content}"
+                  </p>
 
-              <div className="flex justify-center gap-1 mb-4">
-                {[...Array(testimonials[current].rating)].map((_, i) => (
-                  <Star key={i} className="w-5 h-5 text-yellow-500 fill-yellow-500" />
-                ))}
+                  <div className="flex justify-center gap-1 mb-4">
+                    {[...Array(testimonials[current].rating)].map((_, i) => (
+                      <motion.div
+                        key={i}
+                        initial={{ opacity: 0, scale: 0 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ delay: i * 0.1 }}
+                      >
+                        <Star className="w-5 h-5 text-yellow-500 fill-yellow-500" />
+                      </motion.div>
+                    ))}
+                  </div>
+
+                  <h4 className="font-heading font-semibold text-lg">
+                    {testimonials[current].name}
+                  </h4>
+                  <p className="text-muted-foreground text-sm">
+                    {testimonials[current].role}
+                    {testimonials[current].company && `, ${testimonials[current].company}`}
+                  </p>
+                </div>
               </div>
-
-              <h4 className="font-heading font-semibold text-lg">
-                {testimonials[current].name}
-              </h4>
-              <p className="text-muted-foreground text-sm">
-                {testimonials[current].role}
-              </p>
             </motion.div>
           </AnimatePresence>
 
+          {/* Navigation */}
           <div className="flex justify-center items-center gap-4 mt-8">
             <Button
               variant="outline"
               size="icon"
               onClick={prev}
-              className="rounded-full"
+              className="rounded-full border-primary/30 hover:border-primary hover:bg-primary/10"
             >
               <ChevronLeft className="w-5 h-5" />
             </Button>
@@ -123,10 +117,10 @@ export const TestimonialsSection = () => {
                     setAutoPlay(false);
                     setCurrent(index);
                   }}
-                  className={`w-2 h-2 rounded-full transition-all ${
+                  className={`h-2 rounded-full transition-all duration-300 ${
                     index === current
-                      ? "bg-primary w-6"
-                      : "bg-muted-foreground/30 hover:bg-muted-foreground/50"
+                      ? "bg-primary w-8"
+                      : "bg-muted-foreground/30 hover:bg-muted-foreground/50 w-2"
                   }`}
                 />
               ))}
@@ -136,7 +130,7 @@ export const TestimonialsSection = () => {
               variant="outline"
               size="icon"
               onClick={next}
-              className="rounded-full"
+              className="rounded-full border-primary/30 hover:border-primary hover:bg-primary/10"
             >
               <ChevronRight className="w-5 h-5" />
             </Button>
