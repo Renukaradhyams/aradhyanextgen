@@ -1,5 +1,7 @@
 import { motion } from "framer-motion";
 import { Zap, Smartphone, Search, Shield, Code, Gauge } from "lucide-react";
+import { AnimatedBackground } from "@/components/ui/AnimatedBackground";
+import bgWhyUs from "@/assets/bg-whyus.jpg";
 
 const features = [
   {
@@ -55,9 +57,12 @@ const itemVariants = {
 
 export const WhyUsSection = () => {
   return (
-    <section className="py-24 relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/5 to-transparent" />
-      
+    <AnimatedBackground
+      imageSrc={bgWhyUs}
+      overlayOpacity={0.85}
+      parallaxStrength={40}
+      className="py-24"
+    >
       <div className="container mx-auto px-4 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -85,9 +90,10 @@ export const WhyUsSection = () => {
             <motion.div
               key={index}
               variants={itemVariants}
-              className="glass-card p-6 group"
+              whileHover={{ y: -8, scale: 1.02 }}
+              className="glass-card p-6 group backdrop-blur-xl border border-white/10"
             >
-              <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
+              <div className="w-12 h-12 rounded-xl bg-primary/20 flex items-center justify-center mb-4 group-hover:bg-primary/30 group-hover:scale-110 transition-all duration-300">
                 <feature.icon className="w-6 h-6 text-primary" />
               </div>
               <h3 className="font-heading font-semibold text-lg mb-2">
@@ -100,6 +106,6 @@ export const WhyUsSection = () => {
           ))}
         </motion.div>
       </div>
-    </section>
+    </AnimatedBackground>
   );
 };

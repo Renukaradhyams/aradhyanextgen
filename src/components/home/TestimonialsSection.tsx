@@ -3,6 +3,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight, Star, Quote } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { getActiveTestimonials, testimonialSettings } from "@/config/testimonialsConfig";
+import { AnimatedBackground } from "@/components/ui/AnimatedBackground";
+import bgTestimonials from "@/assets/bg-testimonials.jpg";
 
 export const TestimonialsSection = () => {
   const [current, setCurrent] = useState(0);
@@ -33,11 +35,12 @@ export const TestimonialsSection = () => {
   };
 
   return (
-    <section className="py-24 relative overflow-hidden">
-      {/* Blurred gradient background */}
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/5 to-transparent" />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-primary/10 rounded-full blur-[100px]" />
-      
+    <AnimatedBackground
+      imageSrc={bgTestimonials}
+      overlayOpacity={0.9}
+      parallaxStrength={30}
+      className="py-24"
+    >
       <div className="container mx-auto px-4 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -66,10 +69,10 @@ export const TestimonialsSection = () => {
             >
               {/* Glass card with gradient border */}
               <div className="gradient-border rounded-2xl">
-                <div className="glass-card p-8 md:p-12 text-center rounded-2xl">
+                <div className="glass-card p-8 md:p-12 rounded-2xl backdrop-blur-xl border border-white/10">
                   <Quote className="w-12 h-12 text-primary/30 mx-auto mb-6" />
                   
-                  <p className="text-lg md:text-xl text-foreground mb-8 leading-relaxed font-medium">
+                  <p className="text-lg md:text-xl text-foreground mb-8 leading-relaxed font-medium text-center">
                     "{testimonials[current].content}"
                   </p>
 
@@ -86,13 +89,21 @@ export const TestimonialsSection = () => {
                     ))}
                   </div>
 
-                  <h4 className="font-heading font-semibold text-lg">
-                    {testimonials[current].name}
-                  </h4>
-                  <p className="text-muted-foreground text-sm">
-                    {testimonials[current].role}
-                    {testimonials[current].company && `, ${testimonials[current].company}`}
-                  </p>
+                  {/* Client info with avatar */}
+                  <div className="flex items-center justify-center gap-4">
+                    <div className="w-14 h-14 rounded-full bg-gradient-primary flex items-center justify-center text-primary-foreground font-bold text-lg">
+                      {testimonials[current].name.charAt(0)}
+                    </div>
+                    <div className="text-left">
+                      <h4 className="font-heading font-semibold text-lg">
+                        {testimonials[current].name}
+                      </h4>
+                      <p className="text-muted-foreground text-sm">
+                        {testimonials[current].role}
+                        {testimonials[current].company && `, ${testimonials[current].company}`}
+                      </p>
+                    </div>
+                  </div>
                 </div>
               </div>
             </motion.div>
@@ -137,6 +148,6 @@ export const TestimonialsSection = () => {
           </div>
         </div>
       </div>
-    </section>
+    </AnimatedBackground>
   );
 };
