@@ -9,6 +9,8 @@ import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { solutions } from "@/config/solutionsConfig";
 import { PricingSection } from "@/components/home/PricingSection";
+import { AnimatedBackground } from "@/components/ui/AnimatedBackground";
+import bgSolutions from "@/assets/bg-solutions.jpg";
 
 const Solutions = () => {
   return (
@@ -18,8 +20,14 @@ const Solutions = () => {
         <meta name="description" content="Explore our web development solutions: Startup MVPs, AI & Automation, E-commerce, Custom Software, and more. Find the perfect solution for your business." />
       </Helmet>
 
-      <section className="pt-32 pb-12">
-        <div className="container mx-auto px-4">
+      {/* Hero with Animated Background */}
+      <AnimatedBackground
+        imageSrc={bgSolutions}
+        overlayOpacity={0.88}
+        parallaxStrength={50}
+        className="pt-32 pb-12"
+      >
+        <div className="container mx-auto px-4 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -34,7 +42,12 @@ const Solutions = () => {
               Each solution is designed to deliver measurable impact.
             </p>
           </motion.div>
+        </div>
+      </AnimatedBackground>
 
+      {/* Solutions Grid */}
+      <section className="py-16">
+        <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             {solutions.map((solution, index) => (
               <motion.div
@@ -43,10 +56,11 @@ const Solutions = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
+                whileHover={{ y: -5 }}
                 className="glass-card p-8 group"
               >
                 <div className="flex items-start gap-6">
-                  <div className="w-16 h-16 rounded-2xl bg-gradient-primary flex items-center justify-center shrink-0">
+                  <div className="w-16 h-16 rounded-2xl bg-gradient-primary flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
                     <solution.icon className="w-8 h-8 text-primary-foreground" />
                   </div>
                   <div className="flex-1">

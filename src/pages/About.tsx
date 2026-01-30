@@ -4,6 +4,8 @@ import { Target, Eye } from "lucide-react";
 import { aboutConfig } from "@/config/aboutConfig";
 import { useEffect, useState, useRef } from "react";
 import { Helmet } from "react-helmet-async";
+import { AnimatedBackground } from "@/components/ui/AnimatedBackground";
+import bgAbout from "@/assets/bg-about.jpg";
 
 // Animated counter component
 const AnimatedCounter = ({ value, suffix = "" }: { value: string; suffix?: string }) => {
@@ -57,11 +59,13 @@ const About = () => {
         <meta name="description" content="Learn about Aradhya NextGen - a modern web solutions company focused on React-based development, AI solutions, and digital transformation." />
       </Helmet>
 
-      {/* Hero Section */}
-      <section className="pt-32 pb-16 relative">
-        <div className="absolute inset-0 bg-hero-glow" />
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,hsl(var(--primary)/0.03)_1px,transparent_1px),linear-gradient(to_bottom,hsl(var(--primary)/0.03)_1px,transparent_1px)] bg-[size:4rem_4rem]" />
-        
+      {/* Hero Section with Animated Background */}
+      <AnimatedBackground
+        imageSrc={bgAbout}
+        overlayOpacity={0.85}
+        parallaxStrength={50}
+        className="pt-32 pb-16"
+      >
         <div className="container mx-auto px-4 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -77,7 +81,7 @@ const About = () => {
             </p>
           </motion.div>
         </div>
-      </section>
+      </AnimatedBackground>
 
       {/* Who We Are - Split Layout */}
       <section className="py-16">

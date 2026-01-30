@@ -16,7 +16,8 @@ import emailjs from "@emailjs/browser";
 import { emailConfig } from "@/config/emailConfig";
 import { useToast } from "@/hooks/use-toast";
 import { careersConfig } from "@/config/careersConfig";
-import { ParticleBackground } from "@/components/ui/ParticleBackground";
+import { AnimatedBackground } from "@/components/ui/AnimatedBackground";
+import bgCareers from "@/assets/bg-careers.jpg";
 
 const Careers = () => {
   const [formData, setFormData] = useState({
@@ -87,11 +88,13 @@ const Careers = () => {
         <meta name="description" content="Join Aradhya NextGen! We're looking for talented developers, designers, and interns. Explore internship programs, freelance opportunities, and full-time positions." />
       </Helmet>
 
-      {/* Hero */}
-      <section className="pt-32 pb-16 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-background via-primary/5 to-background" />
-        <ParticleBackground particleCount={30} className="opacity-30" />
-        
+      {/* Hero with Animated Background */}
+      <AnimatedBackground
+        imageSrc={bgCareers}
+        overlayOpacity={0.85}
+        parallaxStrength={50}
+        className="pt-32 pb-16"
+      >
         <div className="container mx-auto px-4 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -111,7 +114,7 @@ const Careers = () => {
             </p>
           </motion.div>
         </div>
-      </section>
+      </AnimatedBackground>
 
       {/* Opportunities */}
       <section className="py-16">
