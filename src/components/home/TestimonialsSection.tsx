@@ -3,8 +3,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight, Star, Quote } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { getActiveTestimonials, testimonialSettings } from "@/config/testimonialsConfig";
-import { AnimatedBackground } from "@/components/ui/AnimatedBackground";
-import bgTestimonials from "@/assets/bg-testimonials.jpg";
+import { Card3D } from "@/components/ui/Card3D";
+import { Mesh3DBackground } from "@/components/ui/Mesh3DBackground";
 
 export const TestimonialsSection = () => {
   const [current, setCurrent] = useState(0);
@@ -34,13 +34,13 @@ export const TestimonialsSection = () => {
     setCurrent((prev) => (prev - 1 + testimonials.length) % testimonials.length);
   };
 
+  const glowColors: ("cyan" | "violet" | "primary")[] = ["cyan", "violet", "primary"];
+
   return (
-    <AnimatedBackground
-      imageSrc={bgTestimonials}
-      overlayOpacity={0.9}
-      parallaxStrength={30}
-      className="py-24"
-    >
+    <section className="relative py-24 overflow-hidden">
+      {/* 3D Background */}
+      <Mesh3DBackground variant="subtle" />
+
       <div className="container mx-auto px-4 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -50,7 +50,7 @@ export const TestimonialsSection = () => {
           className="text-center max-w-2xl mx-auto mb-16"
         >
           <h2 className="font-heading text-3xl md:text-4xl font-bold mb-4">
-            What Our <span className="gradient-text">Clients Say</span>
+            What Our <span className="bg-gradient-to-r from-cyan-400 to-violet-500 bg-clip-text text-transparent">Clients Say</span>
           </h2>
           <p className="text-muted-foreground">
             Don't just take our word for it — hear from businesses we've helped.
@@ -65,18 +65,28 @@ export const TestimonialsSection = () => {
               animate={{ opacity: 1, x: 0, scale: 1 }}
               exit={{ opacity: 0, x: -50, scale: 0.95 }}
               transition={{ duration: 0.4 }}
-              className="relative"
             >
-              {/* Glass card with gradient border */}
-              <div className="gradient-border rounded-2xl">
-                <div className="glass-card p-8 md:p-12 rounded-2xl backdrop-blur-xl border border-white/10">
-                  <Quote className="w-12 h-12 text-primary/30 mx-auto mb-6" />
+              <Card3D 
+                glowColor={glowColors[current % glowColors.length]} 
+                intensity="medium"
+              >
+                <div className="p-8 md:p-12">
+                  <div className={`w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-6 ${
+                    current % 3 === 0 ? "bg-cyan-500/20 border border-cyan-500/30" :
+                    current % 3 === 1 ? "bg-violet-500/20 border border-violet-500/30" :
+                    "bg-primary/20 border border-primary/30"
+                  }`}>
+                    <Quote className={`w-8 h-8 ${
+                      current % 3 === 0 ? "text-cyan-400" :
+                      current % 3 === 1 ? "text-violet-400" : "text-primary"
+                    }`} />
+                  </div>
                   
-                  <p className="text-lg md:text-xl text-foreground mb-8 leading-relaxed font-medium text-center">
+                  <p className="text-lg md:text-xl text-foreground mb-8 leading-relaxed font-medium text-center italic">
                     "{testimonials[current].content}"
                   </p>
 
-                  <div className="flex justify-center gap-1 mb-4">
+                  <div className="flex justify-center gap-1 mb-6">
                     {[...Array(testimonials[current].rating)].map((_, i) => (
                       <motion.div
                         key={i}
@@ -84,15 +94,20 @@ export const TestimonialsSection = () => {
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ delay: i * 0.1 }}
                       >
-                        <Star className="w-5 h-5 text-yellow-500 fill-yellow-500" />
+                        <Star className="w-5 h-5 text-yellow-400 fill-yellow-400" />
                       </motion.div>
                     ))}
                   </div>
 
-                  {/* Client info with avatar */}
+                  {/* Client info */}
                   <div className="flex items-center justify-center gap-4">
-                    <div className="w-14 h-14 rounded-full bg-gradient-primary flex items-center justify-center text-primary-foreground font-bold text-lg">
-                      {testimonials[current].name.charAt(0)}
+                    <div className="w-14 h-14 rounded-full bg-gradient-to-br from-cyan-500/20 to-violet-500/20 border border-primary/30 flex items-center justify-center">
+                      <span className={`font-bold text-lg ${
+                        current % 3 === 0 ? "text-cyan-400" :
+                        current % 3 === 1 ? "text-violet-400" : "text-primary"
+                      }`}>
+                        {testimonials[current].name.charAt(0)}
+                      </span>
                     </div>
                     <div className="text-left">
                       <h4 className="font-heading font-semibold text-lg">
@@ -105,7 +120,7 @@ export const TestimonialsSection = () => {
                     </div>
                   </div>
                 </div>
-              </div>
+              </Card3D>
             </motion.div>
           </AnimatePresence>
 
@@ -115,7 +130,7 @@ export const TestimonialsSection = () => {
               variant="outline"
               size="icon"
               onClick={prev}
-              className="rounded-full border-primary/30 hover:border-primary hover:bg-primary/10"
+              className="rounded-full border-primary/30 hover:border-cyan-400 hover:bg-cyan-500/10"
             >
               <ChevronLeft className="w-5 h-5" />
             </Button>
@@ -130,7 +145,7 @@ export const TestimonialsSection = () => {
                   }}
                   className={`h-2 rounded-full transition-all duration-300 ${
                     index === current
-                      ? "bg-primary w-8"
+                      ? "bg-gradient-to-r from-cyan-500 to-violet-500 w-8"
                       : "bg-muted-foreground/30 hover:bg-muted-foreground/50 w-2"
                   }`}
                 />
@@ -141,13 +156,13 @@ export const TestimonialsSection = () => {
               variant="outline"
               size="icon"
               onClick={next}
-              className="rounded-full border-primary/30 hover:border-primary hover:bg-primary/10"
+              className="rounded-full border-primary/30 hover:border-violet-400 hover:bg-violet-500/10"
             >
               <ChevronRight className="w-5 h-5" />
             </Button>
           </div>
         </div>
       </div>
-    </AnimatedBackground>
+    </section>
   );
 };
