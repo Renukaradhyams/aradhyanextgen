@@ -5,6 +5,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { Mesh3DBackground } from "@/components/ui/Mesh3DBackground";
 
 const faqs = [
   {
@@ -35,8 +36,9 @@ const faqs = [
 
 export const FAQSection = () => {
   return (
-    <section className="py-24 relative overflow-hidden">
-      <div className="container mx-auto px-4">
+    <section className="relative py-24 overflow-hidden">
+      <Mesh3DBackground variant="subtle" />
+      <div className="container mx-auto px-4 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -45,7 +47,7 @@ export const FAQSection = () => {
           className="text-center max-w-2xl mx-auto mb-16"
         >
           <h2 className="font-heading text-3xl md:text-4xl font-bold mb-4">
-            Frequently Asked <span className="gradient-text">Questions</span>
+            Frequently Asked <span className="bg-gradient-to-r from-cyan-400 to-violet-500 bg-clip-text text-transparent">Questions</span>
           </h2>
           <p className="text-muted-foreground">
             Got questions? We've got answers.
@@ -64,7 +66,7 @@ export const FAQSection = () => {
               <AccordionItem
                 key={index}
                 value={`item-${index}`}
-                className="glass-card px-6 border-none"
+                className="rounded-2xl bg-card/80 backdrop-blur-xl border border-border/50 px-6 hover:border-primary/30 transition-colors"
               >
                 <AccordionTrigger className="text-left hover:no-underline py-6">
                   <span className="font-heading font-medium text-lg">

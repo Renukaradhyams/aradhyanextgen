@@ -6,101 +6,105 @@
 
 @layer base {
   :root {
-    /* Light theme with green accent */
-    --background: 0 0% 100%;
+    /* Light theme - clean with cyan/violet accents */
+    --background: 220 20% 98%;
     --foreground: 220 20% 10%;
 
-    --card: 0 0% 98%;
+    --card: 0 0% 100%;
     --card-foreground: 220 20% 10%;
 
     --popover: 0 0% 100%;
     --popover-foreground: 220 20% 10%;
 
-    --primary: 150 80% 35%;
+    --primary: 190 90% 45%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 220 10% 94%;
+    --secondary: 220 15% 92%;
     --secondary-foreground: 220 20% 10%;
 
-    --muted: 220 10% 94%;
+    --muted: 220 15% 92%;
     --muted-foreground: 220 10% 45%;
 
-    --accent: 150 70% 30%;
+    --accent: 270 80% 60%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 220 10% 88%;
-    --input: 220 10% 88%;
-    --ring: 150 80% 35%;
+    --border: 220 15% 88%;
+    --input: 220 15% 88%;
+    --ring: 190 90% 45%;
 
     --radius: 0.75rem;
 
     /* Custom colors */
-    --glow-primary: 150 80% 40%;
-    --glass-bg: 0 0% 96%;
-    --glass-border: 220 10% 85%;
-    --gradient-start: 150 80% 35%;
-    --gradient-end: 170 70% 30%;
+    --glow-primary: 190 90% 50%;
+    --glow-cyan: 185 85% 50%;
+    --glow-violet: 270 80% 60%;
+    --glass-bg: 220 20% 96%;
+    --glass-border: 220 15% 85%;
+    --gradient-start: 190 90% 45%;
+    --gradient-end: 270 80% 60%;
 
     /* Sidebar */
-    --sidebar-background: 0 0% 98%;
+    --sidebar-background: 0 0% 100%;
     --sidebar-foreground: 220 20% 10%;
-    --sidebar-primary: 150 80% 35%;
+    --sidebar-primary: 190 90% 45%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 220 10% 94%;
+    --sidebar-accent: 220 15% 94%;
     --sidebar-accent-foreground: 220 20% 10%;
-    --sidebar-border: 220 10% 88%;
-    --sidebar-ring: 150 80% 35%;
+    --sidebar-border: 220 15% 88%;
+    --sidebar-ring: 190 90% 45%;
   }
 
   .dark {
-    /* Dark theme with green accent */
-    --background: 220 20% 6%;
-    --foreground: 0 0% 98%;
+    /* Dark theme - deep tech with cyan/violet neon */
+    --background: 225 25% 6%;
+    --foreground: 210 20% 98%;
 
-    --card: 220 18% 10%;
-    --card-foreground: 0 0% 98%;
+    --card: 225 25% 9%;
+    --card-foreground: 210 20% 98%;
 
-    --popover: 220 18% 10%;
-    --popover-foreground: 0 0% 98%;
+    --popover: 225 25% 9%;
+    --popover-foreground: 210 20% 98%;
 
-    --primary: 150 80% 45%;
-    --primary-foreground: 220 20% 6%;
+    --primary: 185 85% 50%;
+    --primary-foreground: 225 25% 6%;
 
-    --secondary: 220 15% 15%;
-    --secondary-foreground: 0 0% 98%;
+    --secondary: 225 20% 14%;
+    --secondary-foreground: 210 20% 98%;
 
-    --muted: 220 15% 18%;
-    --muted-foreground: 220 10% 60%;
+    --muted: 225 20% 16%;
+    --muted-foreground: 220 15% 55%;
 
-    --accent: 150 70% 40%;
-    --accent-foreground: 220 20% 6%;
+    --accent: 270 80% 65%;
+    --accent-foreground: 225 25% 6%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 220 15% 20%;
-    --input: 220 15% 20%;
-    --ring: 150 80% 45%;
+    --border: 225 20% 16%;
+    --input: 225 20% 16%;
+    --ring: 185 85% 50%;
 
     /* Custom colors */
-    --glow-primary: 150 80% 50%;
-    --glass-bg: 220 18% 12%;
-    --glass-border: 220 15% 25%;
-    --gradient-start: 150 80% 45%;
-    --gradient-end: 170 70% 35%;
+    --glow-primary: 185 85% 55%;
+    --glow-cyan: 185 85% 55%;
+    --glow-violet: 270 80% 65%;
+    --glass-bg: 225 25% 10%;
+    --glass-border: 225 20% 20%;
+    --gradient-start: 185 85% 50%;
+    --gradient-end: 270 80% 65%;
 
     /* Sidebar */
-    --sidebar-background: 220 18% 8%;
-    --sidebar-foreground: 0 0% 98%;
-    --sidebar-primary: 150 80% 45%;
-    --sidebar-primary-foreground: 220 20% 6%;
-    --sidebar-accent: 220 15% 15%;
-    --sidebar-accent-foreground: 0 0% 98%;
-    --sidebar-border: 220 15% 20%;
-    --sidebar-ring: 150 80% 45%;
+    --sidebar-background: 225 25% 7%;
+    --sidebar-foreground: 210 20% 98%;
+    --sidebar-primary: 185 85% 50%;
+    --sidebar-primary-foreground: 225 25% 6%;
+    --sidebar-accent: 225 20% 14%;
+    --sidebar-accent-foreground: 210 20% 98%;
+    --sidebar-border: 225 20% 16%;
+    --sidebar-ring: 185 85% 50%;
   }
 }
 
