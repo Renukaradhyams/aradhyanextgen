@@ -5,7 +5,6 @@ import { WhatsAppButton } from "./WhatsAppButton";
 import { ScrollToTop } from "@/components/ui/ScrollToTop";
 import { PageTransition } from "./PageTransition";
 import { useScrollToTop } from "@/hooks/useScrollToTop";
-import { AIAssistant } from "@/components/ai/AIAssistant";
 
 interface LayoutProps {
   children: ReactNode;
@@ -24,7 +23,6 @@ export const Layout = ({ children }: LayoutProps) => {
       <Footer />
       <WhatsAppButton />
       <ScrollToTop />
-      <AIAssistant />
     </div>
   );
 };

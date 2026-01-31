@@ -1,23 +1,20 @@
 import { useEffect, useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
-import { Card3D } from "@/components/ui/Card3D";
-import { Mesh3DBackground } from "@/components/ui/Mesh3DBackground";
 
 interface Stat {
   value: number;
   suffix: string;
   label: string;
-  color: "cyan" | "violet" | "primary";
 }
 
 const stats: Stat[] = [
-  { value: 50, suffix: "+", label: "Websites Delivered", color: "cyan" },
-  { value: 100, suffix: "%", label: "Client Satisfaction", color: "violet" },
-  { value: 10, suffix: "+", label: "Technologies Used", color: "primary" },
-  { value: 24, suffix: "/7", label: "Support Available", color: "cyan" },
+  { value: 50, suffix: "+", label: "Websites Delivered" },
+  { value: 100, suffix: "%", label: "Client Satisfaction" },
+  { value: 10, suffix: "+", label: "Technologies Used" },
+  { value: 24, suffix: "/7", label: "Support Available" },
 ];
 
-const CountUpAnimation = ({ value, suffix, inView, color }: { value: number; suffix: string; inView: boolean; color: string }) => {
+const CountUpAnimation = ({ value, suffix, inView }: { value: number; suffix: string; inView: boolean }) => {
   const [count, setCount] = useState(0);
 
   useEffect(() => {
@@ -42,10 +39,7 @@ const CountUpAnimation = ({ value, suffix, inView, color }: { value: number; suf
   }, [value, inView]);
 
   return (
-    <span className={`${
-      color === "cyan" ? "text-cyan-400" :
-      color === "violet" ? "text-violet-400" : "text-primary"
-    }`}>
+    <span className="gradient-text">
       {count}
       {suffix}
     </span>
@@ -57,9 +51,8 @@ export const StatsSection = () => {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section ref={ref} className="relative py-20 overflow-hidden">
-      {/* 3D Background */}
-      <Mesh3DBackground variant="subtle" />
+    <section ref={ref} className="py-20 relative overflow-hidden">
+      <div className="absolute inset-0 bg-gradient-to-r from-primary/5 via-transparent to-accent/5" />
       
       <div className="container mx-auto px-4 relative z-10">
         <motion.div
@@ -70,14 +63,14 @@ export const StatsSection = () => {
           className="text-center mb-12"
         >
           <h2 className="font-heading text-3xl md:text-4xl font-bold mb-4">
-            Trusted by <span className="bg-gradient-to-r from-cyan-400 to-violet-500 bg-clip-text text-transparent">Businesses</span>
+            Trusted by <span className="gradient-text">Businesses</span>
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
             Our numbers speak for themselves
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
           {stats.map((stat, index) => (
             <motion.div
               key={index}
@@ -85,15 +78,12 @@ export const StatsSection = () => {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
+              className="glass-card p-6 text-center"
             >
-              <Card3D glowColor={stat.color} intensity="medium" className="text-center">
-                <div className="p-6">
-                  <div className="text-4xl md:text-5xl font-bold font-heading mb-2">
-                    <CountUpAnimation value={stat.value} suffix={stat.suffix} inView={isInView} color={stat.color} />
-                  </div>
-                  <p className="text-muted-foreground text-sm">{stat.label}</p>
-                </div>
-              </Card3D>
+              <div className="text-4xl md:text-5xl font-bold font-heading mb-2">
+                <CountUpAnimation value={stat.value} suffix={stat.suffix} inView={isInView} />
+              </div>
+              <p className="text-muted-foreground text-sm">{stat.label}</p>
             </motion.div>
           ))}
         </div>

@@ -3,19 +3,19 @@ import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { getActiveServices } from "@/config/servicesConfig";
-import { Mesh3DBackground } from "@/components/ui/Mesh3DBackground";
-import { Card3D } from "@/components/ui/Card3D";
+import { AnimatedBackground } from "@/components/ui/AnimatedBackground";
+import bgServices from "@/assets/bg-services.jpg";
 
 export const ServicesPreview = () => {
   const services = getActiveServices().slice(0, 6);
 
-  const glowColors: ("cyan" | "violet" | "primary" | "accent")[] = ["cyan", "violet", "primary", "accent", "cyan", "violet"];
-
   return (
-    <section className="relative py-24 overflow-hidden">
-      {/* 3D Background */}
-      <Mesh3DBackground variant="subtle" />
-      
+    <AnimatedBackground
+      imageSrc={bgServices}
+      overlayOpacity={0.88}
+      parallaxStrength={35}
+      className="py-24"
+    >
       <div className="container mx-auto px-4 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -25,14 +25,14 @@ export const ServicesPreview = () => {
           className="text-center max-w-2xl mx-auto mb-16"
         >
           <h2 className="font-heading text-3xl md:text-4xl font-bold mb-4">
-            Our <span className="bg-gradient-to-r from-cyan-400 to-violet-500 bg-clip-text text-transparent">Services</span>
+            Our <span className="gradient-text">Services</span>
           </h2>
           <p className="text-muted-foreground">
-            Comprehensive digital solutions engineered for the future.
+            Comprehensive web solutions tailored to your business needs.
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {services.map((service, index) => (
             <motion.div
               key={service.id}
@@ -40,48 +40,47 @@ export const ServicesPreview = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
+              whileHover={{ y: -8, scale: 1.02 }}
+              className="group relative"
             >
-              <Card3D 
-                glowColor={glowColors[index % glowColors.length]} 
-                intensity="medium"
-                className="h-full"
-              >
-                <div className="p-6 h-full flex flex-col">
-                  {/* Icon with gradient background */}
-                  <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-cyan-500/20 to-violet-500/20 border border-primary/20 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform duration-300">
-                    <service.icon className="w-7 h-7 text-primary" />
-                  </div>
-                  
-                  <h3 className="font-heading font-semibold text-xl mb-3 group-hover:text-primary transition-colors">
-                    {service.title}
-                  </h3>
-                  
-                  <p className="text-muted-foreground mb-4 flex-grow text-sm leading-relaxed">
-                    {service.description}
-                  </p>
-
-                  {/* Features list */}
-                  <div className="mb-4 flex flex-wrap gap-2">
-                    {service.features.slice(0, 3).map((feature, i) => (
-                      <span 
-                        key={i} 
-                        className="text-xs px-2.5 py-1 bg-primary/10 text-primary rounded-full border border-primary/20"
-                      >
-                        {feature}
-                      </span>
-                    ))}
-                  </div>
-
-                  {/* Link */}
-                  <Link
-                    to="/solutions"
-                    className="inline-flex items-center text-sm text-primary font-medium group/link hover:text-cyan-400 transition-colors"
-                  >
-                    <span>Learn more</span>
-                    <ArrowRight className="ml-1 w-4 h-4 transition-transform group-hover/link:translate-x-2" />
-                  </Link>
+              {/* Glow effect on hover */}
+              <div className="absolute -inset-0.5 bg-gradient-to-r from-primary to-accent rounded-2xl opacity-0 group-hover:opacity-40 blur transition-all duration-300" />
+              
+              <div className="relative glass-card p-6 h-full flex flex-col backdrop-blur-xl border border-white/10">
+                {/* Icon with gradient background */}
+                <div className="w-14 h-14 rounded-2xl bg-gradient-primary flex items-center justify-center mb-5 group-hover:scale-110 transition-transform duration-300">
+                  <service.icon className="w-7 h-7 text-primary-foreground" />
                 </div>
-              </Card3D>
+                
+                <h3 className="font-heading font-semibold text-xl mb-3 group-hover:text-primary transition-colors">
+                  {service.title}
+                </h3>
+                
+                <p className="text-muted-foreground mb-4 flex-grow">
+                  {service.description}
+                </p>
+
+                {/* Features list */}
+                <div className="mb-4">
+                  {service.features.slice(0, 3).map((feature, i) => (
+                    <span 
+                      key={i} 
+                      className="inline-block text-xs px-2 py-1 bg-primary/10 text-primary rounded-full mr-2 mb-2"
+                    >
+                      {feature}
+                    </span>
+                  ))}
+                </div>
+
+                {/* Gradient underline on hover */}
+                <Link
+                  to="/solutions"
+                  className="inline-flex items-center text-sm text-primary font-medium relative overflow-hidden group/link"
+                >
+                  <span className="relative z-10">Learn more</span>
+                  <ArrowRight className="ml-1 w-4 h-4 transition-transform group-hover/link:translate-x-2" />
+                </Link>
+              </div>
             </motion.div>
           ))}
         </div>
@@ -93,7 +92,7 @@ export const ServicesPreview = () => {
           transition={{ duration: 0.5, delay: 0.3 }}
           className="text-center mt-12"
         >
-          <Button size="lg" variant="outline" asChild className="group border-primary/30 hover:border-primary backdrop-blur-sm">
+          <Button size="lg" variant="outline" asChild className="group border-primary/50 hover:border-primary">
             <Link to="/solutions">
               View All Solutions
               <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
@@ -101,6 +100,6 @@ export const ServicesPreview = () => {
           </Button>
         </motion.div>
       </div>
-    </section>
+    </AnimatedBackground>
   );
 };
