@@ -1,11 +1,7 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Mail, Phone, MapPin, ArrowUpRight, Send } from "lucide-react";
-import { useState } from "react";
+import { Mail, Phone, MapPin, ArrowUpRight } from "lucide-react";
 import { contactInfo } from "@/config/contactInfo";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { useToast } from "@/hooks/use-toast";
 
 const footerLinks = {
   company: [
@@ -28,45 +24,23 @@ const footerLinks = {
 };
 
 export const Footer = () => {
-  const [email, setEmail] = useState("");
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const { toast } = useToast();
-
-  const handleNewsletterSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!email) return;
-    setIsSubmitting(true);
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    toast({ title: "Subscribed! 🎉", description: "You'll receive our latest updates." });
-    setEmail("");
-    setIsSubmitting(false);
-  };
-
   return (
-    <footer className="relative border-t border-border/50 overflow-hidden">
-      <div className="absolute inset-0 bg-background" />
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-[radial-gradient(ellipse_at_center,hsl(var(--primary)/0.04),transparent_70%)]" />
+    <footer className="relative border-t border-border overflow-hidden bg-white">
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-[radial-gradient(ellipse_at_center,hsl(var(--primary)/0.03),transparent_70%)]" />
 
       <div className="container mx-auto px-4 py-16 relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12">
-          <div className="lg:col-span-2 space-y-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+          <div className="space-y-4">
             <Link to="/" className="flex items-center gap-3">
-              <img src="/logo.png" alt="Aradhya NextGen Technologies" className="w-9 h-9 object-contain" />
+              <img src="/logo.png" alt="Aradhya NextGen Technologies" className="w-12 h-12 object-contain" />
               <div>
-                <span className="font-heading font-bold text-lg">Aradhya NextGen Technologies</span>
-                <span className="block text-xs text-muted-foreground">Digital Solutions</span>
+                <span className="font-heading font-bold text-lg text-foreground leading-tight block">Aradhya NextGen</span>
+                <span className="text-[10px] text-muted-foreground font-medium tracking-wider uppercase">Technologies</span>
               </div>
             </Link>
             <p className="text-muted-foreground text-sm leading-relaxed max-w-xs">
               From Idea to Online Presence. Building next-generation digital solutions that drive real business growth.
             </p>
-            <div className="pt-4">
-              <p className="text-sm font-medium mb-3">Subscribe to our newsletter</p>
-              <form onSubmit={handleNewsletterSubmit} className="flex gap-2">
-                <Input type="email" placeholder="Enter your email" value={email} onChange={(e) => setEmail(e.target.value)} className="bg-card/50 border-border" />
-                <Button type="submit" size="icon" disabled={isSubmitting}><Send className="w-4 h-4" /></Button>
-              </form>
-            </div>
           </div>
 
           <div>
@@ -107,8 +81,8 @@ export const Footer = () => {
               <div className="flex gap-2">
                 {footerLinks.social.map((social) => (
                   <motion.a key={social.label} href={social.href} target="_blank" rel="noopener noreferrer" whileHover={{ scale: 1.1 }}
-                    className="w-10 h-10 rounded-lg bg-card border border-border hover:border-primary/50 hover:bg-primary/10 flex items-center justify-center transition-all">
-                    <span className="text-xs font-medium">{social.label[0]}</span>
+                    className="w-10 h-10 rounded-lg bg-background border border-border hover:border-primary/50 hover:bg-primary/5 flex items-center justify-center transition-all">
+                    <span className="text-xs font-medium text-foreground">{social.label[0]}</span>
                   </motion.a>
                 ))}
               </div>
@@ -116,9 +90,9 @@ export const Footer = () => {
           </div>
         </div>
 
-        <div className="mt-12 pt-8 border-t border-border/50 flex flex-col md:flex-row items-center justify-between gap-4">
+        <div className="mt-12 pt-8 border-t border-border flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-muted-foreground text-sm">© {new Date().getFullYear()} Aradhya NextGen Technologies. All rights reserved.</p>
-          <p className="text-muted-foreground text-sm">Built with <span className="text-primary">React</span> & <span className="text-primary">Tailwind CSS</span></p>
+          <p className="text-muted-foreground text-sm">Built with <span className="text-primary font-medium">React</span> & <span className="text-primary font-medium">Tailwind CSS</span></p>
         </div>
       </div>
     </footer>

@@ -23,20 +23,21 @@ export const TestimonialsSection = () => {
 
   return (
     <section className="py-28 relative overflow-hidden">
-      <div className="absolute inset-0 bg-background" />
+      <div className="absolute inset-0 bg-white" />
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-[radial-gradient(ellipse_at_center,hsl(var(--primary)/0.04),transparent_70%)]" />
 
       <div className="container mx-auto px-4 relative z-10">
         <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
           className="text-center max-w-2xl mx-auto mb-16">
-          <h2 className="font-heading text-3xl md:text-4xl font-bold mb-4">What Our <span className="gradient-text">Clients Say</span></h2>
-          <p className="text-muted-foreground">Don't just take our word for it — hear from businesses we've helped.</p>
+          <span className="inline-block px-4 py-1.5 rounded-full bg-primary/8 text-primary text-sm font-medium mb-4">Testimonials</span>
+          <h2 className="font-heading text-3xl md:text-4xl font-bold mb-4 text-foreground">What Our <span className="gradient-text">Clients Say</span></h2>
+          <p className="text-muted-foreground text-lg">Don't just take our word for it — hear from businesses we've helped.</p>
         </motion.div>
 
         <div className="max-w-3xl mx-auto relative">
           <AnimatePresence mode="wait">
             <motion.div key={current} initial={{ opacity: 0, x: 40 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -40 }} transition={{ duration: 0.4 }}>
-              <div className="glass-card p-8 md:p-12 border border-border/50">
+              <div className="bg-white p-8 md:p-12 rounded-2xl border border-border shadow-lg">
                 <Quote className="w-10 h-10 text-primary/20 mx-auto mb-6" />
                 <p className="text-lg md:text-xl text-foreground mb-8 leading-relaxed font-medium text-center">
                   "{testimonials[current].content}"
@@ -51,7 +52,7 @@ export const TestimonialsSection = () => {
                     {testimonials[current].name.charAt(0)}
                   </div>
                   <div className="text-left">
-                    <h4 className="font-heading font-semibold">{testimonials[current].name}</h4>
+                    <h4 className="font-heading font-semibold text-foreground">{testimonials[current].name}</h4>
                     <p className="text-muted-foreground text-sm">
                       {testimonials[current].role}{testimonials[current].company && `, ${testimonials[current].company}`}
                     </p>
@@ -62,16 +63,16 @@ export const TestimonialsSection = () => {
           </AnimatePresence>
 
           <div className="flex justify-center items-center gap-4 mt-8">
-            <Button variant="outline" size="icon" onClick={prev} className="rounded-full border-border hover:border-primary">
+            <Button variant="outline" size="icon" onClick={prev} className="rounded-full border-border hover:border-primary hover:bg-primary/5">
               <ChevronLeft className="w-5 h-5" />
             </Button>
             <div className="flex gap-2">
               {testimonials.map((_, index) => (
                 <button key={index} onClick={() => { setAutoPlay(false); setCurrent(index); }}
-                  className={`h-1.5 rounded-full transition-all duration-300 ${index === current ? "bg-primary w-8" : "bg-muted-foreground/30 w-1.5"}`} />
+                  className={`h-2 rounded-full transition-all duration-300 ${index === current ? "bg-primary w-8" : "bg-muted w-2"}`} />
               ))}
             </div>
-            <Button variant="outline" size="icon" onClick={next} className="rounded-full border-border hover:border-primary">
+            <Button variant="outline" size="icon" onClick={next} className="rounded-full border-border hover:border-primary hover:bg-primary/5">
               <ChevronRight className="w-5 h-5" />
             </Button>
           </div>

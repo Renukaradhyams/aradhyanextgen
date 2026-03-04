@@ -1,13 +1,13 @@
 import { motion } from "framer-motion";
-import { Check, X } from "lucide-react";
+import { Check, X, Monitor, Code2 } from "lucide-react";
 
 const comparisons = [
-  { feature: "Page Load Speed", traditional: "Slower", react: "⚡ Lightning Fast" },
-  { feature: "User Experience", traditional: "Static Feel", react: "Dynamic & Smooth" },
-  { feature: "Scalability", traditional: "Limited", react: "Highly Scalable" },
-  { feature: "Code Reusability", traditional: "Minimal", react: "Component-Based" },
-  { feature: "Future Upgrades", traditional: "Hard & Costly", react: "Easy & Efficient" },
-  { feature: "SEO Performance", traditional: "Basic", react: "Optimized" },
+  { feature: "Page Load Speed", traditional: "3-5 seconds", react: "Under 1 second" },
+  { feature: "User Experience", traditional: "Static & jarring", react: "Smooth & dynamic" },
+  { feature: "Scalability", traditional: "Limited growth", react: "Infinitely scalable" },
+  { feature: "Code Quality", traditional: "Monolithic", react: "Component-based" },
+  { feature: "Future Upgrades", traditional: "Costly & slow", react: "Fast & efficient" },
+  { feature: "SEO Performance", traditional: "Basic support", react: "Fully optimized" },
 ];
 
 export const ComparisonSection = () => {
@@ -17,29 +17,66 @@ export const ComparisonSection = () => {
       <div className="container mx-auto px-4 relative z-10">
         <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
           className="text-center max-w-2xl mx-auto mb-16">
-          <h2 className="font-heading text-3xl md:text-4xl font-bold mb-4">Why <span className="gradient-text">React Websites</span>?</h2>
-          <p className="text-muted-foreground">See how modern React websites outperform traditional websites.</p>
+          <span className="inline-block px-4 py-1.5 rounded-full bg-primary/8 text-primary text-sm font-medium mb-4">Why React</span>
+          <h2 className="font-heading text-3xl md:text-4xl font-bold mb-4 text-foreground">Why <span className="gradient-text">React Websites</span>?</h2>
+          <p className="text-muted-foreground text-lg">See how modern React websites outperform traditional websites in every metric.</p>
         </motion.div>
 
-        <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
-          className="max-w-4xl mx-auto glass-card overflow-hidden border border-border/50">
-          <div className="grid grid-cols-3 gap-0">
-            <div className="p-4 md:p-6 border-b border-border/50"><h3 className="font-heading font-semibold text-sm md:text-base">Feature</h3></div>
-            <div className="p-4 md:p-6 border-b border-border/50 text-center"><h3 className="font-heading font-semibold text-sm md:text-base text-muted-foreground">Traditional</h3></div>
-            <div className="p-4 md:p-6 bg-primary/5 border-b border-primary/10 text-center"><h3 className="font-heading font-semibold text-sm md:text-base text-primary">React Website</h3></div>
-            {comparisons.map((item, index) => (
-              <div key={index} className="contents">
-                <div className="p-4 md:p-6 border-b border-border/30 flex items-center"><span className="text-sm md:text-base">{item.feature}</span></div>
-                <div className="p-4 md:p-6 border-b border-border/30 text-center flex items-center justify-center gap-2">
-                  <X className="w-4 h-4 text-destructive hidden md:block" /><span className="text-sm md:text-base text-muted-foreground">{item.traditional}</span>
-                </div>
-                <div className="p-4 md:p-6 bg-primary/5 border-b border-primary/5 text-center flex items-center justify-center gap-2">
-                  <Check className="w-4 h-4 text-primary hidden md:block" /><span className="text-sm md:text-base font-medium">{item.react}</span>
+        <div className="max-w-4xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+          {/* Browser mockup */}
+          <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}
+            className="bg-white rounded-2xl border border-border shadow-lg overflow-hidden">
+            <div className="bg-muted/50 px-4 py-3 flex items-center gap-2 border-b border-border">
+              <div className="flex gap-1.5">
+                <div className="w-3 h-3 rounded-full bg-red-400" />
+                <div className="w-3 h-3 rounded-full bg-yellow-400" />
+                <div className="w-3 h-3 rounded-full bg-green-400" />
+              </div>
+              <div className="flex-1 text-center">
+                <div className="inline-flex items-center gap-2 px-4 py-1 rounded-lg bg-white border border-border text-xs text-muted-foreground">
+                  <Code2 className="w-3 h-3" /> aradhyanextgen.com
                 </div>
               </div>
+            </div>
+            <div className="p-8 space-y-4">
+              <div className="flex items-center gap-3">
+                <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center">
+                  <Monitor className="w-4 h-4 text-primary" />
+                </div>
+                <div className="font-heading font-bold text-foreground">React Performance</div>
+              </div>
+              <div className="space-y-3">
+                <div className="flex justify-between text-sm"><span className="text-muted-foreground">Load Time</span><span className="font-semibold text-primary">0.8s</span></div>
+                <div className="h-2 bg-muted rounded-full overflow-hidden"><motion.div initial={{ width: 0 }} whileInView={{ width: "95%" }} viewport={{ once: true }} transition={{ duration: 1.5, delay: 0.5 }} className="h-full bg-gradient-to-r from-primary to-accent rounded-full" /></div>
+                <div className="flex justify-between text-sm"><span className="text-muted-foreground">SEO Score</span><span className="font-semibold text-primary">98/100</span></div>
+                <div className="h-2 bg-muted rounded-full overflow-hidden"><motion.div initial={{ width: 0 }} whileInView={{ width: "98%" }} viewport={{ once: true }} transition={{ duration: 1.5, delay: 0.7 }} className="h-full bg-gradient-to-r from-primary to-accent rounded-full" /></div>
+                <div className="flex justify-between text-sm"><span className="text-muted-foreground">Conversion Rate</span><span className="font-semibold text-primary">3.2x</span></div>
+                <div className="h-2 bg-muted rounded-full overflow-hidden"><motion.div initial={{ width: 0 }} whileInView={{ width: "88%" }} viewport={{ once: true }} transition={{ duration: 1.5, delay: 0.9 }} className="h-full bg-gradient-to-r from-primary to-accent rounded-full" /></div>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Comparison list */}
+          <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}
+            className="space-y-3">
+            {comparisons.map((item, index) => (
+              <motion.div key={index} initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: index * 0.08 }}
+                className="bg-white rounded-xl p-4 border border-border shadow-sm">
+                <div className="font-heading font-semibold text-sm mb-2 text-foreground">{item.feature}</div>
+                <div className="grid grid-cols-2 gap-3">
+                  <div className="flex items-center gap-2 text-xs">
+                    <X className="w-3.5 h-3.5 text-destructive shrink-0" />
+                    <span className="text-muted-foreground">{item.traditional}</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-xs">
+                    <Check className="w-3.5 h-3.5 text-primary shrink-0" />
+                    <span className="font-medium text-foreground">{item.react}</span>
+                  </div>
+                </div>
+              </motion.div>
             ))}
-          </div>
-        </motion.div>
+          </motion.div>
+        </div>
       </div>
     </section>
   );
