@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowRight, Sparkles, MessageCircle } from "lucide-react";
+import { ArrowRight, MessageCircle } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ScrollIndicator } from "@/components/ui/ScrollIndicator";
@@ -24,68 +24,67 @@ export const HeroSection = () => {
   }, []);
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
-      {/* Animated Gradient Background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-background via-background to-primary/5 animate-gradient" />
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 noise-overlay">
+      {/* Deep dark base */}
+      <div className="absolute inset-0 bg-background" />
 
-      {/* Background Effects */}
-      <div className="absolute inset-0 bg-hero-glow opacity-50" />
+      {/* Radial emerald glows */}
+      <div className="absolute top-0 left-0 w-[800px] h-[800px] bg-[radial-gradient(ellipse_at_center,hsl(145_70%_45%/0.08),transparent_70%)] -translate-x-1/3 -translate-y-1/3" />
+      <div className="absolute bottom-0 right-0 w-[600px] h-[600px] bg-[radial-gradient(ellipse_at_center,hsl(145_70%_45%/0.06),transparent_70%)] translate-x-1/4 translate-y-1/4" />
 
-      <motion.div 
-        animate={{ scale: [1, 1.1, 1], opacity: [0.1, 0.15, 0.1] }}
+      {/* Subtle grid */}
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,hsl(145_70%_45%/0.03)_1px,transparent_1px),linear-gradient(to_bottom,hsl(145_70%_45%/0.03)_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_0%,#000_70%,transparent_110%)]" />
+
+      {/* Logo watermark */}
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+        <img 
+          src="/logo.png" 
+          alt="" 
+          className="w-[500px] h-[500px] object-contain opacity-[0.04]"
+          draggable={false}
+        />
+      </div>
+
+      {/* Animated glow orb */}
+      <motion.div
+        animate={{ 
+          scale: [1, 1.2, 1],
+          opacity: [0.15, 0.25, 0.15],
+        }}
         transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-primary/20 rounded-full blur-[100px]" 
+        className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[400px] h-[400px] bg-primary/20 rounded-full blur-[120px]"
       />
-
-      <motion.div 
-        animate={{ scale: [1.1, 1, 1.1], opacity: [0.1, 0.15, 0.1] }}
-        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut", delay: 2 }}
-        className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-accent/20 rounded-full blur-[100px]" 
-      />
-
-      {/* Tech Grid Pattern */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,hsl(var(--primary)/0.10)_1px,transparent_1px),linear-gradient(to_bottom,hsl(var(--primary)/0.10)_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_0%,#000_70%,transparent_110%)]" />
 
       <div className="container mx-auto px-4 relative z-10">
-        <div className="max-w-4xl mx-auto text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass border border-primary/30 mb-8"
-          >
-            <Sparkles className="w-4 h-4 text-primary" />
-            <span className="text-sm text-muted-foreground">
-              Next-Gen Digital Solutions
-            </span>
-          </motion.div>
-
+        <div className="max-w-5xl mx-auto text-center">
           <motion.h1
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="font-heading text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-6"
+            transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
+            className="font-heading text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight mb-6 leading-[1.05]"
           >
-            Aradhya NextGen
+            Building Scalable
             <br />
-            <span className="gradient-text">Building Scalable</span>
+            <span className="gradient-text">Cloud & Digital</span>
+            <br />
+            Transformation
           </motion.h1>
 
           {/* Rotating Text */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="h-16 md:h-20 flex items-center justify-center mb-6"
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="h-12 md:h-14 flex items-center justify-center mb-8"
           >
             <AnimatePresence mode="wait">
               <motion.span
                 key={currentTextIndex}
-                initial={{ opacity: 0, y: 20, scale: 0.9 }}
-                animate={{ opacity: 1, y: 0, scale: 1 }}
-                exit={{ opacity: 0, y: -20, scale: 0.9 }}
-                transition={{ duration: 0.5 }}
-                className="text-2xl sm:text-3xl md:text-4xl font-heading font-semibold text-primary"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ duration: 0.4 }}
+                className="text-xl sm:text-2xl md:text-3xl font-heading font-medium text-primary"
               >
                 {rotatingTexts[currentTextIndex]}
               </motion.span>
@@ -95,27 +94,23 @@ export const HeroSection = () => {
           <motion.p
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-10 text-balance"
+            transition={{ duration: 0.8, delay: 0.3 }}
+            className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-12 text-balance leading-relaxed"
           >
             Your digital presence is more than a page — it's your brand's growth engine. 
-            We create fast, scalable, and AI-powered solutions that drive real results.
+            We build AI-powered and high-performance digital solutions that scale with your ambition.
           </motion.p>
 
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
             className="flex flex-col sm:flex-row items-center justify-center gap-4"
           >
-            <Button size="lg" asChild className="group px-8 relative overflow-hidden">
+            <Button size="lg" asChild className="group px-8 h-12 text-base font-semibold bg-primary text-primary-foreground hover:bg-primary/90 hover:shadow-[0_0_30px_-5px_hsl(145_70%_45%/0.5)] transition-all duration-300">
               <Link to="/contact">
-                <span className="relative z-10">Get a Proposal</span>
-                <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1 relative z-10" />
-                <motion.div
-                  className="absolute inset-0 bg-gradient-to-r from-primary to-accent opacity-0 group-hover:opacity-100 transition-opacity"
-                  whileHover={{ scale: 1.05 }}
-                />
+                Get a Proposal
+                <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
               </Link>
             </Button>
 
@@ -123,55 +118,39 @@ export const HeroSection = () => {
               size="lg"
               variant="outline"
               asChild
-              className="group border-primary/50 hover:border-primary hover:bg-primary/5"
+              className="group h-12 text-base border-primary/40 hover:border-primary hover:bg-primary/10 transition-all duration-300"
             >
-              <a
-                href={getWhatsAppUrl()}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
+              <a href={getWhatsAppUrl()} target="_blank" rel="noopener noreferrer">
                 <MessageCircle className="mr-2 w-4 h-4" />
                 Talk to Us
               </a>
             </Button>
           </motion.div>
 
-          {/* Tagline */}
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.6 }}
-            className="mt-12 text-muted-foreground text-sm"
-          >
-            From Idea to Online Presence — <span className="text-primary">Aradhya NextGen</span>
-          </motion.p>
-
-          {/* Stats Preview */}
+          {/* Glass floating cards */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.7 }}
-            className="mt-12 grid grid-cols-3 gap-8 max-w-md mx-auto"
+            transition={{ duration: 0.8, delay: 0.6 }}
+            className="mt-20 grid grid-cols-3 gap-4 max-w-lg mx-auto"
           >
             {[
-              { value: "50+", label: "Projects" },
-              { value: "100%", label: "Satisfaction" },
+              { value: "50+", label: "Projects Shipped" },
+              { value: "100%", label: "Client Satisfaction" },
               { value: "24/7", label: "Support" },
             ].map((stat, index) => (
-              <motion.div
+              <div
                 key={index}
-                className="text-center"
-                whileHover={{ scale: 1.05 }}
+                className="glass-card px-4 py-5 text-center border border-border/50"
               >
-                <div className="text-2xl font-bold text-primary">{stat.value}</div>
-                <div className="text-xs text-muted-foreground">{stat.label}</div>
-              </motion.div>
+                <div className="text-2xl font-bold text-primary font-heading">{stat.value}</div>
+                <div className="text-xs text-muted-foreground mt-1">{stat.label}</div>
+              </div>
             ))}
           </motion.div>
         </div>
       </div>
 
-      {/* Scroll Indicator */}
       <ScrollIndicator />
     </section>
   );
