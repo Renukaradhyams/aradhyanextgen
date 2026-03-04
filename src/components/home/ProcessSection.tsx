@@ -10,9 +10,8 @@ const steps = [
 
 export const ProcessSection = () => {
   return (
-    <section className="py-28 relative overflow-hidden noise-overlay">
+    <section className="py-28 relative overflow-hidden">
       <div className="absolute inset-0 bg-background" />
-
       <div className="container mx-auto px-4 relative z-10">
         <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
           className="text-center max-w-2xl mx-auto mb-20">
@@ -21,26 +20,15 @@ export const ProcessSection = () => {
         </motion.div>
 
         <div className="max-w-4xl mx-auto">
-          {/* Horizontal line */}
+          {/* Desktop horizontal */}
           <div className="hidden md:block relative mb-16">
             <div className="absolute top-8 left-[12%] right-[12%] h-px bg-border" />
-            <motion.div
-              className="absolute top-8 left-[12%] h-px bg-primary"
-              initial={{ width: 0 }}
-              whileInView={{ width: "76%" }}
-              viewport={{ once: true }}
-              transition={{ duration: 1.5, ease: "easeOut", delay: 0.3 }}
-            />
+            <motion.div className="absolute top-8 left-[12%] h-px bg-primary" initial={{ width: 0 }}
+              whileInView={{ width: "76%" }} viewport={{ once: true }} transition={{ duration: 1.5, ease: "easeOut", delay: 0.3 }} />
             <div className="grid grid-cols-4 gap-6">
               {steps.map((step, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: index * 0.15 }}
-                  className="text-center group"
-                >
+                <motion.div key={index} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }} transition={{ duration: 0.5, delay: index * 0.15 }} className="text-center group">
                   <div className="w-16 h-16 mx-auto mb-6 rounded-full bg-card border border-border group-hover:border-primary/50 flex items-center justify-center relative z-10 transition-all">
                     <step.icon className="w-7 h-7 text-primary" />
                   </div>
@@ -56,8 +44,7 @@ export const ProcessSection = () => {
           <div className="md:hidden space-y-6">
             {steps.map((step, index) => (
               <motion.div key={index} initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }} transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="flex gap-5">
+                viewport={{ once: true }} transition={{ duration: 0.5, delay: index * 0.1 }} className="flex gap-5">
                 <div className="w-12 h-12 rounded-full bg-card border border-border flex items-center justify-center shrink-0">
                   <step.icon className="w-5 h-5 text-primary" />
                 </div>

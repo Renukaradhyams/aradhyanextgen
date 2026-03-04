@@ -7,9 +7,9 @@ export const FounderSection = () => {
   const { founder } = aboutConfig;
 
   return (
-    <section className="py-28 relative overflow-hidden noise-overlay">
+    <section className="py-28 relative overflow-hidden">
       <div className="absolute inset-0 bg-background" />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-[radial-gradient(ellipse_at_center,hsl(145_70%_45%/0.04),transparent_70%)]" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-[radial-gradient(ellipse_at_center,hsl(var(--primary)/0.04),transparent_70%)]" />
 
       <div className="container mx-auto px-4 relative z-10">
         <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}

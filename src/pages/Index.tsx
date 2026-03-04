@@ -20,26 +20,15 @@ const Index = () => {
   return (
     <Layout>
       <Helmet>
-        <title>Aradhya NextGen - Next-Gen Web Solutions | React Development</title>
-        <meta name="description" content="Build fast, scalable, and conversion-focused websites with Aradhya NextGen. We specialize in React development, AI solutions, and digital transformation for startups and businesses." />
-        <meta name="keywords" content="web development, React websites, startup website, business website, landing page, website redesign, India" />
+        <title>Aradhya NextGen Technologies - Next-Gen Web & AI Solutions</title>
+        <meta name="description" content="Build fast, scalable, and conversion-focused websites with Aradhya NextGen Technologies. We specialize in React development, AI solutions, and digital transformation." />
+        <meta name="keywords" content="web development, React websites, AI automation, cloud platforms, digital transformation, India" />
         
-        {/* Open Graph / Facebook */}
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://aradhyanextgen.lovable.app/" />
-        <meta property="og:title" content="Aradhya NextGen - From Idea to Online Presence" />
+        <meta property="og:title" content="Aradhya NextGen Technologies - From Idea to Online Presence" />
         <meta property="og:description" content="Next-generation web development company. Build fast, scalable React websites that convert visitors into customers." />
-        <meta property="og:image" content="https://aradhyanextgen.lovable.app/og-image.png" />
-        
-        {/* Twitter */}
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:url" content="https://aradhyanextgen.lovable.app/" />
-        <meta name="twitter:title" content="Aradhya NextGen - From Idea to Online Presence" />
-        <meta name="twitter:description" content="Next-generation web development company. Build fast, scalable React websites that convert visitors into customers." />
-        <meta name="twitter:image" content="https://aradhyanextgen.lovable.app/og-image.png" />
-        
-        {/* WhatsApp specific */}
-        <meta property="og:site_name" content="Aradhya NextGen" />
+        <meta property="og:site_name" content="Aradhya NextGen Technologies" />
         <meta property="og:locale" content="en_IN" />
         
         <link rel="canonical" href="https://aradhyanextgen.lovable.app/" />
