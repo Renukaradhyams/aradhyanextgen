@@ -13,7 +13,7 @@ const CountUp = ({ value, suffix, inView }: { value: number; suffix: string; inV
   useEffect(() => {
     if (!inView) return;
     let start = 0;
-    const increment = value / 80;
+    const increment = value / 60;
     const timer = setInterval(() => {
       start += increment;
       if (start >= value) { setCount(value); clearInterval(timer); }
@@ -30,7 +30,7 @@ export const StatsSection = () => {
 
   return (
     <section ref={ref} className="py-20 relative overflow-hidden">
-      <div className="absolute inset-0 bg-background" />
+      <div className="absolute inset-0 bg-white" />
       <div className="container mx-auto px-4 relative z-10">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
           {stats.map((stat, index) => (
@@ -40,12 +40,12 @@ export const StatsSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="glass-card p-6 text-center border border-border/50"
+              className="bg-white p-7 text-center rounded-2xl border border-border shadow-sm hover:shadow-lg transition-all duration-300"
             >
               <div className="text-3xl md:text-4xl font-bold font-heading mb-2">
                 <CountUp value={stat.value} suffix={stat.suffix} inView={isInView} />
               </div>
-              <p className="text-muted-foreground text-sm">{stat.label}</p>
+              <p className="text-muted-foreground text-sm font-medium">{stat.label}</p>
             </motion.div>
           ))}
         </div>

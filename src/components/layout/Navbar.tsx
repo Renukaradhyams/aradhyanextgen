@@ -3,7 +3,6 @@ import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { ThemeToggle } from "@/components/ui/ThemeToggle";
 import { getWhatsAppUrl } from "@/config/contactInfo";
 
 const navLinks = [
@@ -36,16 +35,19 @@ export const Navbar = () => {
       transition={{ duration: 0.5 }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
-          ? "bg-background/80 backdrop-blur-xl border-b border-border/50 py-3"
-          : "bg-transparent py-5"
+          ? "bg-white/80 backdrop-blur-xl border-b border-border/50 py-2"
+          : "bg-transparent py-4"
       }`}
     >
       <div className="container mx-auto px-4 flex items-center justify-between">
         <Link to="/" className="flex items-center gap-3 group">
-          <img src="/logo.png" alt="Aradhya NextGen Technologies" className="w-9 h-9 object-contain" />
-          <span className="font-heading font-bold text-lg text-foreground group-hover:text-primary transition-colors">
-            Aradhya NextGen Technologies
-          </span>
+          <img src="/logo.png" alt="Aradhya NextGen Technologies" className="w-11 h-11 object-contain" />
+          <div className="flex flex-col">
+            <span className="font-heading font-bold text-lg text-foreground leading-tight">
+              Aradhya NextGen
+            </span>
+            <span className="text-[10px] text-muted-foreground font-medium tracking-wider uppercase">Technologies</span>
+          </div>
         </Link>
 
         <div className="hidden md:flex items-center gap-8">
@@ -66,17 +68,15 @@ export const Navbar = () => {
         </div>
 
         <div className="hidden md:flex items-center gap-3">
-          <ThemeToggle />
           <Button variant="ghost" size="sm" asChild className="text-muted-foreground hover:text-primary">
             <a href={getWhatsAppUrl()} target="_blank" rel="noopener noreferrer">WhatsApp</a>
           </Button>
-          <Button size="sm" asChild className="bg-primary text-primary-foreground hover:bg-primary/90 hover:shadow-[0_0_20px_-5px_hsl(var(--primary)/0.4)]">
+          <Button size="sm" asChild className="bg-primary text-primary-foreground hover:bg-primary/90 hover:shadow-[0_0_20px_-5px_hsl(var(--primary)/0.4)] transition-all duration-300">
             <Link to="/contact">Get Started</Link>
           </Button>
         </div>
 
         <div className="flex items-center gap-2 md:hidden">
-          <ThemeToggle />
           <button onClick={() => setIsOpen(!isOpen)} className="p-2 text-foreground">
             {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
@@ -89,7 +89,7 @@ export const Navbar = () => {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-card/95 backdrop-blur-xl mt-2 mx-4 rounded-xl overflow-hidden border border-border"
+            className="md:hidden bg-white/95 backdrop-blur-xl mt-2 mx-4 rounded-xl overflow-hidden border border-border"
           >
             <div className="p-4 flex flex-col gap-2">
               {navLinks.map((link) => (

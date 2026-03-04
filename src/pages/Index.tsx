@@ -20,18 +20,33 @@ const Index = () => {
   return (
     <Layout>
       <Helmet>
-        <title>Aradhya NextGen Technologies - Next-Gen Web & AI Solutions</title>
-        <meta name="description" content="Build fast, scalable, and conversion-focused websites with Aradhya NextGen Technologies. We specialize in React development, AI solutions, and digital transformation." />
-        <meta name="keywords" content="web development, React websites, AI automation, cloud platforms, digital transformation, India" />
+        <title>Aradhya NextGen Technologies | Web, AI & Cloud Solutions</title>
+        <meta name="description" content="We build scalable web platforms, AI automation systems, and cloud solutions for startups and enterprises in Bangalore, India." />
+        <meta name="keywords" content="web development, React websites, AI automation, cloud platforms, digital transformation, Bangalore, India" />
         
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://aradhyanextgen.lovable.app/" />
-        <meta property="og:title" content="Aradhya NextGen Technologies - From Idea to Online Presence" />
-        <meta property="og:description" content="Next-generation web development company. Build fast, scalable React websites that convert visitors into customers." />
+        <meta property="og:title" content="Aradhya NextGen Technologies | Web, AI & Cloud Solutions" />
+        <meta property="og:description" content="We build scalable web platforms, AI automation systems, and cloud solutions for startups and enterprises." />
         <meta property="og:site_name" content="Aradhya NextGen Technologies" />
         <meta property="og:locale" content="en_IN" />
         
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Aradhya NextGen Technologies | Web, AI & Cloud Solutions" />
+        <meta name="twitter:description" content="We build scalable web platforms, AI automation systems, and cloud solutions." />
+        
         <link rel="canonical" href="https://aradhyanextgen.lovable.app/" />
+        
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          "name": "Aradhya NextGen Technologies",
+          "url": "https://aradhyanextgen.lovable.app",
+          "logo": "https://aradhyanextgen.lovable.app/logo.png",
+          "description": "Web development, AI automation, and cloud solutions company based in Bangalore, India.",
+          "address": { "@type": "PostalAddress", "addressLocality": "Bangalore", "addressCountry": "IN" },
+          "contactPoint": { "@type": "ContactPoint", "telephone": "+91-6360076463", "contactType": "sales" }
+        })}</script>
       </Helmet>
       
       <HeroSection />
