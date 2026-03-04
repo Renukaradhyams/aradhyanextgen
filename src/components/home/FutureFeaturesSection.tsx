@@ -5,7 +5,7 @@ import { futureTechConfig } from "@/config/futureTechConfig";
 const statusColors: Record<string, string> = {
   "available": "bg-primary/10 text-primary border-primary/20",
   "coming-soon": "bg-yellow-500/10 text-yellow-500 border-yellow-500/20",
-  "in-development": "bg-blue-500/10 text-blue-500 border-blue-500/20",
+  "in-development": "bg-accent/10 text-accent border-accent/20",
 };
 
 const statusLabels: Record<string, string> = {
@@ -16,9 +16,8 @@ const statusLabels: Record<string, string> = {
 
 export const FutureFeaturesSection = () => {
   return (
-    <section className="py-28 relative overflow-hidden noise-overlay">
+    <section className="py-28 relative overflow-hidden">
       <div className="absolute inset-0 bg-background" />
-
       <div className="container mx-auto px-4 relative z-10">
         <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
           className="text-center max-w-2xl mx-auto mb-16">

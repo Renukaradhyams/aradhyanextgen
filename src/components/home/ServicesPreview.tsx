@@ -8,35 +8,23 @@ export const ServicesPreview = () => {
   const services = getActiveServices().slice(0, 6);
 
   return (
-    <section className="py-28 relative overflow-hidden noise-overlay">
+    <section className="py-28 relative overflow-hidden">
       <div className="absolute inset-0 bg-background" />
-      <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-[radial-gradient(ellipse_at_center,hsl(145_70%_45%/0.04),transparent_70%)] -translate-x-1/3" />
+      <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-[radial-gradient(ellipse_at_center,hsl(var(--primary)/0.04),transparent_70%)] -translate-x-1/3" />
 
       <div className="container mx-auto px-4 relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center max-w-2xl mx-auto mb-16"
-        >
-          <h2 className="font-heading text-3xl md:text-4xl font-bold mb-4">
-            Our <span className="gradient-text">Services</span>
-          </h2>
+        <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
+          className="text-center max-w-2xl mx-auto mb-16">
+          <h2 className="font-heading text-3xl md:text-4xl font-bold mb-4">Our <span className="gradient-text">Services</span></h2>
           <p className="text-muted-foreground">Comprehensive digital solutions tailored to your business needs.</p>
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 max-w-5xl mx-auto">
           {services.map((service, index) => (
-            <motion.div
-              key={service.id}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.08 }}
-              whileHover={{ y: -6 }}
-              className="group relative"
-            >
-              <div className="absolute -inset-0.5 bg-primary rounded-2xl opacity-0 group-hover:opacity-15 blur-sm transition-all duration-500" />
+            <motion.div key={service.id} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }} transition={{ duration: 0.5, delay: index * 0.08 }}
+              whileHover={{ y: -6 }} className="group relative">
+              <div className="absolute -inset-0.5 bg-primary rounded-2xl opacity-0 group-hover:opacity-10 blur-sm transition-all duration-500" />
               <div className="relative glass-card p-6 h-full flex flex-col border border-border/50 group-hover:border-primary/30">
                 <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-5 group-hover:bg-primary/20 transition-colors">
                   <service.icon className="w-6 h-6 text-primary" />
@@ -56,12 +44,8 @@ export const ServicesPreview = () => {
           ))}
         </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center mt-12"
-        >
+        <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
+          className="text-center mt-12">
           <Button size="lg" variant="outline" asChild className="group border-primary/30 hover:border-primary">
             <Link to="/solutions">View All Solutions<ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" /></Link>
           </Button>

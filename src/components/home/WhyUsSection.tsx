@@ -22,19 +22,15 @@ const itemVariants = {
 
 export const WhyUsSection = () => {
   return (
-    <section className="py-28 relative overflow-hidden noise-overlay">
+    <section className="py-28 relative overflow-hidden">
       <div className="absolute inset-0 bg-background" />
-      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[radial-gradient(ellipse_at_center,hsl(145_70%_45%/0.05),transparent_70%)] translate-x-1/3 -translate-y-1/3" />
+      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[radial-gradient(ellipse_at_center,hsl(var(--primary)/0.04),transparent_70%)] translate-x-1/3 -translate-y-1/3" />
 
       <div className="container mx-auto px-4 relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center max-w-2xl mx-auto mb-16"
-        >
+        <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
+          className="text-center max-w-2xl mx-auto mb-16">
           <h2 className="font-heading text-3xl md:text-4xl font-bold mb-4">
-            Why <span className="gradient-text">Aradhya NextGen</span>?
+            Why <span className="gradient-text">Aradhya NextGen Technologies</span>?
           </h2>
           <p className="text-muted-foreground">We combine modern technology with creative design to deliver websites that perform.</p>
         </motion.div>
