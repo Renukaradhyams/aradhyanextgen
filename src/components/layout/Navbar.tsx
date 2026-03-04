@@ -41,19 +41,13 @@ export const Navbar = () => {
       }`}
     >
       <div className="container mx-auto px-4 flex items-center justify-between">
-        {/* Logo */}
         <Link to="/" className="flex items-center gap-3 group">
-          <img
-            src="/logo.png"
-            alt="Aradhya NextGen"
-            className="w-9 h-9 object-contain drop-shadow-[0_0_8px_hsl(145_70%_45%/0.3)]"
-          />
+          <img src="/logo.png" alt="Aradhya NextGen Technologies" className="w-9 h-9 object-contain" />
           <span className="font-heading font-bold text-lg text-foreground group-hover:text-primary transition-colors">
-            Aradhya NextGen
+            Aradhya NextGen Technologies
           </span>
         </Link>
 
-        {/* Desktop Navigation */}
         <div className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => (
             <Link
@@ -65,10 +59,7 @@ export const Navbar = () => {
             >
               {link.label}
               {location.pathname === link.href && (
-                <motion.div
-                  layoutId="navbar-indicator"
-                  className="absolute -bottom-1 left-0 right-0 h-0.5 bg-primary rounded-full"
-                />
+                <motion.div layoutId="navbar-indicator" className="absolute -bottom-1 left-0 right-0 h-0.5 bg-primary rounded-full" />
               )}
             </Link>
           ))}
@@ -77,16 +68,13 @@ export const Navbar = () => {
         <div className="hidden md:flex items-center gap-3">
           <ThemeToggle />
           <Button variant="ghost" size="sm" asChild className="text-muted-foreground hover:text-primary">
-            <a href={getWhatsAppUrl()} target="_blank" rel="noopener noreferrer">
-              WhatsApp
-            </a>
+            <a href={getWhatsAppUrl()} target="_blank" rel="noopener noreferrer">WhatsApp</a>
           </Button>
-          <Button size="sm" asChild className="bg-primary text-primary-foreground hover:bg-primary/90 hover:shadow-[0_0_20px_-5px_hsl(145_70%_45%/0.4)]">
+          <Button size="sm" asChild className="bg-primary text-primary-foreground hover:bg-primary/90 hover:shadow-[0_0_20px_-5px_hsl(var(--primary)/0.4)]">
             <Link to="/contact">Get Started</Link>
           </Button>
         </div>
 
-        {/* Mobile */}
         <div className="flex items-center gap-2 md:hidden">
           <ThemeToggle />
           <button onClick={() => setIsOpen(!isOpen)} className="p-2 text-foreground">
@@ -105,13 +93,8 @@ export const Navbar = () => {
           >
             <div className="p-4 flex flex-col gap-2">
               {navLinks.map((link) => (
-                <Link
-                  key={link.href}
-                  to={link.href}
-                  className={`p-3 rounded-lg transition-colors ${
-                    location.pathname === link.href ? "bg-primary/10 text-primary" : "text-muted-foreground hover:bg-muted"
-                  }`}
-                >
+                <Link key={link.href} to={link.href}
+                  className={`p-3 rounded-lg transition-colors ${location.pathname === link.href ? "bg-primary/10 text-primary" : "text-muted-foreground hover:bg-muted"}`}>
                   {link.label}
                 </Link>
               ))}
