@@ -6,35 +6,25 @@ const projects = [
   {
     title: "GalaxyPower Solar",
     url: "https://galaxypowersolar.in",
-    description: "Corporate solar energy website built for performance, branding, and lead generation.",
+    description: "High-performance solar energy website designed to generate leads and showcase renewable solutions.",
     tech: ["React", "Tailwind CSS", "SEO", "Lead Gen"],
     gradient: "from-emerald-50 to-teal-50",
   },
   {
     title: "Karunadu LED",
     url: "https://karunaduled.in",
-    description: "Modern lighting solutions website designed for product showcase and B2B engagement.",
+    description: "Product-focused website built to highlight lighting solutions and strengthen B2B engagement.",
     tech: ["React", "Framer Motion", "Responsive", "B2B"],
     gradient: "from-blue-50 to-indigo-50",
   },
   {
     title: "Unnathi CNC",
     url: "https://unnathicnc.com",
-    description: "Industrial precision manufacturing website focused on strong branding and SEO performance.",
+    description: "Industrial manufacturing website optimized for strong branding and SEO visibility.",
     tech: ["React", "TypeScript", "SEO", "Industrial"],
     gradient: "from-amber-50 to-orange-50",
   },
 ];
-
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: { opacity: 1, transition: { staggerChildren: 0.15 } },
-};
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
-};
 
 export const CaseStudiesSection = () => {
   return (
@@ -50,12 +40,13 @@ export const CaseStudiesSection = () => {
           <p className="text-muted-foreground text-lg">Real businesses powered by Aradhya NextGen Technologies. Built for performance, scalability, and growth.</p>
         </motion.div>
 
-        <motion.div variants={containerVariants} initial="hidden" whileInView="visible" viewport={{ once: true }}
+        <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }}
+          variants={{ hidden: { opacity: 0 }, visible: { opacity: 1, transition: { staggerChildren: 0.15 } } }}
           className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
           {projects.map((project) => (
-            <motion.div key={project.title} variants={itemVariants} whileHover={{ y: -8 }} className="group relative">
-              <div className="relative bg-white overflow-hidden h-full rounded-2xl border border-border group-hover:border-primary/30 shadow-sm group-hover:shadow-xl transition-all duration-500">
-                {/* Header with gradient */}
+            <motion.div key={project.title} variants={{ hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0, transition: { duration: 0.6 } } }} whileHover={{ y: -8 }} className="group relative">
+              <div className="absolute -inset-0.5 bg-gradient-to-b from-primary/15 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <div className="relative bg-white/80 backdrop-blur-sm overflow-hidden h-full rounded-2xl border border-border group-hover:border-primary/30 shadow-sm group-hover:shadow-xl transition-all duration-500">
                 <div className={`h-40 bg-gradient-to-br ${project.gradient} relative overflow-hidden`}>
                   <div className="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,hsl(var(--foreground)/0.04)_1px,transparent_0)] bg-[size:20px_20px]" />
                   <div className="absolute inset-0 bg-gradient-to-t from-white/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />

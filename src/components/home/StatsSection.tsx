@@ -2,10 +2,10 @@ import { useEffect, useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
 
 const stats = [
-  { value: 50, suffix: "+", label: "Projects Delivered" },
-  { value: 100, suffix: "%", label: "Client Satisfaction" },
-  { value: 10, suffix: "+", label: "Technologies Used" },
-  { value: 24, suffix: "/7", label: "Support Available" },
+  { value: 50, suffix: "+", label: "Successful Projects Delivered" },
+  { value: 100, suffix: "%", label: "Client Satisfaction Rate" },
+  { value: 10, suffix: "+", label: "Modern Technologies Used" },
+  { value: 24, suffix: "/7", label: "Technical Support" },
 ];
 
 const CountUp = ({ value, suffix, inView }: { value: number; suffix: string; inView: boolean }) => {
@@ -40,7 +40,8 @@ export const StatsSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="bg-white p-7 text-center rounded-2xl border border-border shadow-sm hover:shadow-lg transition-all duration-300"
+              whileHover={{ y: -4, transition: { duration: 0.2 } }}
+              className="bg-white/80 backdrop-blur-sm p-7 text-center rounded-2xl border border-border shadow-sm hover:shadow-lg hover:border-primary/20 transition-all duration-300"
             >
               <div className="text-3xl md:text-4xl font-bold font-heading mb-2">
                 <CountUp value={stat.value} suffix={stat.suffix} inView={isInView} />

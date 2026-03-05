@@ -1,6 +1,6 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Mail, Phone, MapPin, ArrowUpRight } from "lucide-react";
+import { Mail, Phone, MapPin, ArrowUpRight, Linkedin, Github, Twitter } from "lucide-react";
 import { contactInfo } from "@/config/contactInfo";
 
 const footerLinks = {
@@ -17,13 +17,21 @@ const footerLinks = {
     { label: "E-commerce", href: "/solutions" },
   ],
   social: [
-    { label: "LinkedIn", href: "https://www.linkedin.com/in/renukaradhya-m-s" },
-    { label: "GitHub", href: "https://github.com/renukaradhya" },
-    { label: "Twitter", href: "https://twitter.com" },
+    { label: "LinkedIn", href: "https://www.linkedin.com/in/renukaradhya-m-s", icon: Linkedin },
+    { label: "GitHub", href: "https://github.com/renukaradhya", icon: Github },
+    { label: "Twitter", href: "https://twitter.com", icon: Twitter },
   ],
 };
 
 export const Footer = () => {
+  const navigate = useNavigate();
+
+  const handleLogoClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    navigate("/");
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   return (
     <footer className="relative border-t border-border overflow-hidden bg-white">
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-[radial-gradient(ellipse_at_center,hsl(var(--primary)/0.03),transparent_70%)]" />
@@ -31,15 +39,15 @@ export const Footer = () => {
       <div className="container mx-auto px-4 py-16 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
           <div className="space-y-4">
-            <Link to="/" className="flex items-center gap-3">
-              <img src="/logo.png" alt="Aradhya NextGen Technologies" className="w-12 h-12 object-contain" />
+            <a href="/" onClick={handleLogoClick} className="flex items-center gap-3">
+              <img src="/logo.png" alt="Aradhya NextGen Technologies" className="w-14 h-14 object-contain" />
               <div>
-                <span className="font-heading font-bold text-lg text-foreground leading-tight block">Aradhya NextGen</span>
-                <span className="text-[10px] text-muted-foreground font-medium tracking-wider uppercase">Technologies</span>
+                <span className="font-heading font-bold text-xl text-foreground leading-tight block">Aradhya NextGen</span>
+                <span className="text-[11px] text-muted-foreground font-medium tracking-wider uppercase">Technologies</span>
               </div>
-            </Link>
+            </a>
             <p className="text-muted-foreground text-sm leading-relaxed max-w-xs">
-              From Idea to Online Presence. Building next-generation digital solutions that drive real business growth.
+              From Idea to Digital Success. Building modern websites and intelligent digital platforms for ambitious businesses.
             </p>
           </div>
 
@@ -82,7 +90,7 @@ export const Footer = () => {
                 {footerLinks.social.map((social) => (
                   <motion.a key={social.label} href={social.href} target="_blank" rel="noopener noreferrer" whileHover={{ scale: 1.1 }}
                     className="w-10 h-10 rounded-lg bg-background border border-border hover:border-primary/50 hover:bg-primary/5 flex items-center justify-center transition-all">
-                    <span className="text-xs font-medium text-foreground">{social.label[0]}</span>
+                    <social.icon className="w-4 h-4 text-foreground/70" />
                   </motion.a>
                 ))}
               </div>

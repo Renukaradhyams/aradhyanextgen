@@ -1,31 +1,31 @@
 import { motion } from "framer-motion";
-import { Zap, Smartphone, Search, Shield } from "lucide-react";
+import { Zap, Shield, Smartphone, Search } from "lucide-react";
 
 const features = [
   { 
     icon: Zap, 
-    title: "Lightning Performance", 
+    title: "Ultra-Fast Performance", 
     description: "Our React-based architecture delivers sub-second load times, keeping your visitors engaged and conversions high.",
     stat: "< 1s",
     statLabel: "Load Time"
   },
   { 
     icon: Shield, 
-    title: "Enterprise Security", 
+    title: "Enterprise-Grade Security", 
     description: "Production-grade security with SSL, data encryption, and industry-standard compliance built into every project.",
     stat: "99.9%",
     statLabel: "Uptime"
   },
   { 
     icon: Smartphone, 
-    title: "Mobile-First Design", 
+    title: "Mobile-First Experience", 
     description: "Every pixel is crafted to look stunning across all devices — from smartphones to ultra-wide desktop monitors.",
     stat: "100%",
     statLabel: "Responsive"
   },
   { 
     icon: Search, 
-    title: "SEO Optimized", 
+    title: "Built-in SEO Optimization", 
     description: "Built-in technical SEO ensures your website ranks higher, drives organic traffic, and generates qualified leads.",
     stat: "Top 10",
     statLabel: "Rankings"
@@ -46,7 +46,7 @@ export const WhyUsSection = () => {
   return (
     <section className="py-28 relative overflow-hidden">
       <div className="absolute inset-0 bg-white" />
-      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[radial-gradient(ellipse_at_center,hsl(var(--primary)/0.04),transparent_70%)] translate-x-1/3 -translate-y-1/3" />
+      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[radial-gradient(ellipse_at_center,hsl(var(--primary)/0.05),transparent_70%)] translate-x-1/3 -translate-y-1/3" />
       <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-[radial-gradient(ellipse_at_center,hsl(var(--primary)/0.03),transparent_70%)] -translate-x-1/3 translate-y-1/3" />
 
       <div className="container mx-auto px-4 relative z-10">
@@ -65,9 +65,9 @@ export const WhyUsSection = () => {
             <motion.div key={index} variants={itemVariants} whileHover={{ y: -6, transition: { duration: 0.3 } }}
               className="group relative">
               <div className="absolute -inset-0.5 bg-gradient-to-br from-primary/20 to-accent/10 rounded-2xl opacity-0 group-hover:opacity-100 blur-sm transition-all duration-500" />
-              <div className="relative bg-white p-8 rounded-2xl border border-border group-hover:border-primary/30 shadow-sm group-hover:shadow-lg transition-all duration-300">
+              <div className="relative bg-white/80 backdrop-blur-sm p-8 rounded-2xl border border-border group-hover:border-primary/30 shadow-sm group-hover:shadow-lg transition-all duration-300">
                 <div className="flex items-start justify-between mb-5">
-                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary/10 to-primary/5 flex items-center justify-center group-hover:from-primary/20 group-hover:to-primary/10 transition-colors">
+                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary/10 to-primary/5 flex items-center justify-center group-hover:from-primary/20 group-hover:to-primary/10 transition-colors group-hover:scale-110 duration-300">
                     <feature.icon className="w-6 h-6 text-primary" />
                   </div>
                   <div className="text-right">
