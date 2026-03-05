@@ -15,18 +15,26 @@ const testimonials = [
 export const TestimonialsSection = () => {
   const [current, setCurrent] = useState(0);
   const [autoPlay, setAutoPlay] = useState(true);
+  const [direction, setDirection] = useState(1);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
     if (!autoPlay) return;
     intervalRef.current = setInterval(() => {
+      setDirection(1);
       setCurrent((prev) => (prev + 1) % testimonials.length);
-    }, 5000);
+    }, 6000);
     return () => { if (intervalRef.current) clearInterval(intervalRef.current); };
   }, [autoPlay]);
 
-  const next = () => { setAutoPlay(false); setCurrent((prev) => (prev + 1) % testimonials.length); };
-  const prev = () => { setAutoPlay(false); setCurrent((prev) => (prev - 1 + testimonials.length) % testimonials.length); };
+  const next = () => { setAutoPlay(false); setDirection(1); setCurrent((prev) => (prev + 1) % testimonials.length); };
+  const prev = () => { setAutoPlay(false); setDirection(-1); setCurrent((prev) => (prev - 1 + testimonials.length) % testimonials.length); };
+
+  const slideVariants = {
+    enter: (dir: number) => ({ x: dir > 0 ? 80 : -80, opacity: 0, scale: 0.95 }),
+    center: { x: 0, opacity: 1, scale: 1 },
+    exit: (dir: number) => ({ x: dir > 0 ? -80 : 80, opacity: 0, scale: 0.95 }),
+  };
 
   return (
     <section className="py-28 relative overflow-hidden">
@@ -42,8 +50,16 @@ export const TestimonialsSection = () => {
         </motion.div>
 
         <div className="max-w-3xl mx-auto relative">
-          <AnimatePresence mode="wait">
-            <motion.div key={current} initial={{ opacity: 0, x: 40 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -40 }} transition={{ duration: 0.4 }}>
+          <AnimatePresence mode="wait" custom={direction}>
+            <motion.div
+              key={current}
+              custom={direction}
+              variants={slideVariants}
+              initial="enter"
+              animate="center"
+              exit="exit"
+              transition={{ duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
+            >
               <div className="bg-white/80 backdrop-blur-sm p-8 md:p-12 rounded-2xl border border-border shadow-lg">
                 <Quote className="w-10 h-10 text-primary/20 mx-auto mb-6" />
                 <p className="text-lg md:text-xl text-foreground mb-8 leading-relaxed font-medium text-center">
@@ -51,7 +67,9 @@ export const TestimonialsSection = () => {
                 </p>
                 <div className="flex justify-center gap-1 mb-4">
                   {[...Array(testimonials[current].rating)].map((_, i) => (
-                    <Star key={i} className="w-4 h-4 text-primary fill-primary" />
+                    <motion.div key={i} initial={{ opacity: 0, scale: 0 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: i * 0.05 }}>
+                      <Star className="w-4 h-4 text-primary fill-primary" />
+                    </motion.div>
                   ))}
                 </div>
                 <div className="flex items-center justify-center gap-4">
@@ -70,16 +88,16 @@ export const TestimonialsSection = () => {
           </AnimatePresence>
 
           <div className="flex justify-center items-center gap-4 mt-8">
-            <Button variant="outline" size="icon" onClick={prev} className="rounded-full border-border hover:border-primary hover:bg-primary/5">
+            <Button variant="outline" size="icon" onClick={prev} className="rounded-full border-border hover:border-primary hover:bg-primary/5 hover:scale-110 transition-all duration-300">
               <ChevronLeft className="w-5 h-5" />
             </Button>
             <div className="flex gap-2">
               {testimonials.map((_, index) => (
-                <button key={index} onClick={() => { setAutoPlay(false); setCurrent(index); }}
-                  className={`h-2 rounded-full transition-all duration-300 ${index === current ? "bg-primary w-8" : "bg-muted w-2"}`} />
+                <button key={index} onClick={() => { setAutoPlay(false); setDirection(index > current ? 1 : -1); setCurrent(index); }}
+                  className={`h-2 rounded-full transition-all duration-500 ${index === current ? "bg-primary w-8" : "bg-muted w-2 hover:bg-primary/30"}`} />
               ))}
             </div>
-            <Button variant="outline" size="icon" onClick={next} className="rounded-full border-border hover:border-primary hover:bg-primary/5">
+            <Button variant="outline" size="icon" onClick={next} className="rounded-full border-border hover:border-primary hover:bg-primary/5 hover:scale-110 transition-all duration-300">
               <ChevronRight className="w-5 h-5" />
             </Button>
           </div>

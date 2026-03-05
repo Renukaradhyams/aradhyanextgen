@@ -3,8 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 
 const categories = [
   {
-    id: "frontend",
-    label: "Frontend",
+    id: "frontend", label: "Frontend",
     techs: [
       { name: "React.js", color: "#61DAFB", abbr: "⚛️" },
       { name: "Next.js", color: "#000000", abbr: "▲" },
@@ -15,8 +14,7 @@ const categories = [
     ],
   },
   {
-    id: "backend",
-    label: "Backend",
+    id: "backend", label: "Backend",
     techs: [
       { name: "Node.js", color: "#339933", abbr: "🟢" },
       { name: "Python", color: "#3776AB", abbr: "🐍" },
@@ -26,8 +24,7 @@ const categories = [
     ],
   },
   {
-    id: "mobile",
-    label: "Mobile",
+    id: "mobile", label: "Mobile",
     techs: [
       { name: "Android", color: "#3DDC84", abbr: "🤖" },
       { name: "iOS", color: "#000000", abbr: "🍎" },
@@ -37,8 +34,7 @@ const categories = [
     ],
   },
   {
-    id: "cloud",
-    label: "Cloud & Database",
+    id: "cloud", label: "Cloud & Database",
     techs: [
       { name: "AWS", color: "#FF9900", abbr: "☁️" },
       { name: "Vercel", color: "#000000", abbr: "▲" },
@@ -49,8 +45,7 @@ const categories = [
     ],
   },
   {
-    id: "platforms",
-    label: "Platforms",
+    id: "platforms", label: "Platforms",
     techs: [
       { name: "Shopify", color: "#7AB55C", abbr: "🛍️" },
       { name: "WordPress", color: "#21759B", abbr: "W" },
@@ -76,9 +71,7 @@ export const TechExpertiseSection = () => {
           viewport={{ once: true }}
           className="text-center max-w-2xl mx-auto mb-12"
         >
-          <span className="inline-block px-4 py-1.5 rounded-full bg-primary/8 text-primary text-sm font-medium mb-4">
-            Expertise
-          </span>
+          <span className="inline-block px-4 py-1.5 rounded-full bg-primary/8 text-primary text-sm font-medium mb-4">Expertise</span>
           <h2 className="font-heading text-3xl md:text-4xl font-bold mb-4 text-foreground">
             Our Technology <span className="gradient-text">Expertise</span>
           </h2>
@@ -90,9 +83,11 @@ export const TechExpertiseSection = () => {
         {/* Tabs */}
         <div className="flex flex-wrap justify-center gap-2 mb-12">
           {categories.map((cat) => (
-            <button
+            <motion.button
               key={cat.id}
               onClick={() => setActiveTab(cat.id)}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
               className={`px-5 py-2.5 rounded-full text-sm font-medium transition-all duration-300 ${
                 activeTab === cat.id
                   ? "bg-primary text-primary-foreground shadow-[0_0_20px_-5px_hsl(var(--primary)/0.4)]"
@@ -100,7 +95,7 @@ export const TechExpertiseSection = () => {
               }`}
             >
               {cat.label}
-            </button>
+            </motion.button>
           ))}
         </div>
 
@@ -108,28 +103,29 @@ export const TechExpertiseSection = () => {
         <AnimatePresence mode="wait">
           <motion.div
             key={activeTab}
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            transition={{ duration: 0.3 }}
+            initial={{ opacity: 0, y: 20, scale: 0.98 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -20, scale: 0.98 }}
+            transition={{ duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
             className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 max-w-5xl mx-auto"
           >
             {activeCategory.techs.map((tech, index) => (
               <motion.div
                 key={tech.name}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.06 }}
-                whileHover={{ y: -6, scale: 1.05 }}
+                initial={{ opacity: 0, y: 30, scale: 0.9 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                transition={{ delay: index * 0.08, duration: 0.4 }}
+                whileHover={{ y: -8, scale: 1.08, rotate: 2 }}
                 className="group cursor-default"
               >
-                <div className="bg-card/80 backdrop-blur-sm p-6 rounded-2xl text-center border border-border group-hover:border-primary/30 group-hover:shadow-xl transition-all duration-300">
-                  <div
-                    className="w-14 h-14 mx-auto mb-3 rounded-xl flex items-center justify-center text-2xl transition-transform group-hover:scale-110"
+                <div className="bg-card/80 backdrop-blur-sm p-6 rounded-2xl text-center border border-border group-hover:border-primary/30 group-hover:shadow-xl transition-all duration-500">
+                  <motion.div
+                    className="w-14 h-14 mx-auto mb-3 rounded-xl flex items-center justify-center text-2xl"
                     style={{ backgroundColor: `${tech.color}12` }}
+                    whileHover={{ scale: 1.15 }}
                   >
                     {tech.abbr}
-                  </div>
+                  </motion.div>
                   <h4 className="font-heading font-medium text-sm text-foreground">{tech.name}</h4>
                 </div>
               </motion.div>

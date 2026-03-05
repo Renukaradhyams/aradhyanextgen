@@ -12,6 +12,13 @@ const rotatingTexts = [
   "Digital Transformation",
 ];
 
+const floatingCards = [
+  { icon: Globe, title: "Web Development", desc: "Modern React & Next.js applications", pos: "top-4 left-4", w: "w-56", anim: { y: [0, -25, 0], rotate: [-1, 1.5, -1] }, dur: 4 },
+  { icon: Cpu, title: "AI Automation", desc: "Smart business workflows", pos: "top-2 right-2", w: "w-52", anim: { y: [0, 30, 0], rotate: [1, -2, 1] }, dur: 5, delay: 0.5 },
+  { icon: Cloud, title: "Cloud Solutions", desc: "Scalable cloud infrastructure", pos: "bottom-24 left-12", w: "w-52", anim: { y: [0, -18, 0], x: [0, 20, 0], rotate: [-1.5, 1, -1.5] }, dur: 4.5, delay: 1 },
+  { icon: BarChart3, title: "Growth Analytics", desc: "Data-driven decisions", pos: "bottom-8 right-8", w: "w-48", anim: { y: [0, -35, 0], rotate: [1.5, -1.5, 1.5] }, dur: 6, delay: 0.3 },
+];
+
 export const HeroSection = () => {
   const [currentTextIndex, setCurrentTextIndex] = useState(0);
 
@@ -54,9 +61,9 @@ export const HeroSection = () => {
           {/* Left - Content */}
           <div className="max-w-xl">
             <motion.div
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7 }}
+              transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
               className="mb-6"
             >
               <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/8 border border-primary/15 text-sm text-primary font-medium">
@@ -66,9 +73,9 @@ export const HeroSection = () => {
             </motion.div>
 
             <motion.h1
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.1 }}
+              transition={{ duration: 0.8, delay: 0.1, ease: [0.25, 0.46, 0.45, 0.94] }}
               className="font-heading text-4xl sm:text-5xl lg:text-[3.5rem] font-bold tracking-tight mb-3 leading-[1.1] text-foreground"
             >
               Transforming Ideas Into{" "}
@@ -79,16 +86,16 @@ export const HeroSection = () => {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.2 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
               className="h-8 flex items-center mb-6"
             >
               <AnimatePresence mode="wait">
                 <motion.span
                   key={currentTextIndex}
-                  initial={{ opacity: 0, y: 15 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -15 }}
-                  transition={{ duration: 0.35 }}
+                  initial={{ opacity: 0, y: 20, filter: "blur(4px)" }}
+                  animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                  exit={{ opacity: 0, y: -20, filter: "blur(4px)" }}
+                  transition={{ duration: 0.4 }}
                   className="text-base sm:text-lg font-heading font-semibold text-primary"
                 >
                   {rotatingTexts[currentTextIndex]}
@@ -99,7 +106,7 @@ export const HeroSection = () => {
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.3 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
               className="text-base md:text-lg text-muted-foreground max-w-lg mb-8 leading-relaxed"
             >
               We design and build high-performance websites, AI automation systems, and scalable cloud platforms that help businesses grow faster online.
@@ -108,24 +115,24 @@ export const HeroSection = () => {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.4 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
               className="flex flex-col sm:flex-row items-start gap-3"
             >
               <Button
                 size="lg"
                 asChild
-                className="group px-7 h-12 text-base font-semibold bg-primary text-primary-foreground shadow-[0_0_0_0_hsl(var(--primary)/0.4)] hover:shadow-[0_0_30px_-5px_hsl(var(--primary)/0.5)] transition-all duration-500"
+                className="group px-7 h-12 text-base font-semibold bg-primary text-primary-foreground shadow-[0_0_0_0_hsl(var(--primary)/0.4)] hover:shadow-[0_0_30px_-5px_hsl(var(--primary)/0.5)] hover:scale-[1.02] transition-all duration-500"
               >
                 <Link to="/contact">
                   Start Your Project
-                  <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
+                  <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1.5" />
                 </Link>
               </Button>
               <Button
                 size="lg"
                 variant="outline"
                 asChild
-                className="group h-12 text-base border-border text-foreground hover:border-primary/40 hover:bg-primary/5 transition-all duration-300"
+                className="group h-12 text-base border-border text-foreground hover:border-primary/40 hover:bg-primary/5 hover:scale-[1.02] transition-all duration-300"
               >
                 <a href={getWhatsAppUrl()} target="_blank" rel="noopener noreferrer">
                   <MessageCircle className="mr-2 w-4 h-4" />
@@ -138,45 +145,46 @@ export const HeroSection = () => {
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ duration: 0.7, delay: 0.6 }}
+              transition={{ duration: 0.8, delay: 0.6 }}
               className="mt-8 flex flex-wrap gap-x-5 gap-y-2"
             >
               {[
                 "50+ Websites Delivered",
                 "MSME & UDYAM Certified",
                 "React & AI Specialists",
-              ].map((item) => (
-                <span key={item} className="flex items-center gap-1.5 text-xs text-muted-foreground">
+              ].map((item, i) => (
+                <motion.span
+                  key={item}
+                  initial={{ opacity: 0, x: -10 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.7 + i * 0.1 }}
+                  className="flex items-center gap-1.5 text-xs text-muted-foreground"
+                >
                   <Check className="w-3.5 h-3.5 text-primary" />
                   {item}
-                </span>
+                </motion.span>
               ))}
             </motion.div>
           </div>
 
           {/* Right - Floating glass cards */}
           <motion.div
-            initial={{ opacity: 0, x: 40 }}
+            initial={{ opacity: 0, x: 60 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
+            transition={{ duration: 1, delay: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
             className="hidden lg:block relative h-[520px]"
           >
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[280px] h-[280px] bg-primary/8 rounded-full blur-[80px]" />
 
-            {[
-              { icon: Globe, title: "Web Development", desc: "Modern React & Next.js applications", pos: "top-4 left-4", w: "w-56", anim: { y: [0, -12, 0] }, dur: 5 },
-              { icon: Cpu, title: "AI Automation", desc: "Smart business workflows", pos: "top-2 right-2", w: "w-52", anim: { y: [0, 10, 0] }, dur: 6, delay: 1 },
-              { icon: Cloud, title: "Cloud Solutions", desc: "Scalable cloud infrastructure", pos: "bottom-24 left-12", w: "w-52", anim: { y: [0, -8, 0] }, dur: 7, delay: 2 },
-              { icon: BarChart3, title: "Growth Analytics", desc: "Data-driven decisions", pos: "bottom-8 right-8", w: "w-48", anim: { y: [0, 14, 0] }, dur: 5.5, delay: 0.5 },
-            ].map((card) => (
+            {floatingCards.map((card) => (
               <motion.div
                 key={card.title}
                 animate={card.anim}
                 transition={{ duration: card.dur, repeat: Infinity, ease: "easeInOut", delay: card.delay || 0 }}
-                whileHover={{ y: -6, scale: 1.03 }}
+                whileHover={{ y: -10, scale: 1.06, rotate: 0, boxShadow: "0 20px 40px -10px rgba(0,0,0,0.15)" }}
                 className={`absolute ${card.pos} glass-card p-5 ${card.w} cursor-default`}
               >
-                <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center mb-3">
+                <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center mb-3 transition-all duration-300 group-hover:scale-110">
                   <card.icon className="w-5 h-5 text-primary" />
                 </div>
                 <h4 className="font-heading font-semibold text-sm mb-1 text-foreground">{card.title}</h4>
