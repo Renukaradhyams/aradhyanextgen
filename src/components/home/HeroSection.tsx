@@ -7,7 +7,7 @@ import { getWhatsAppUrl } from "@/config/contactInfo";
 
 const rotatingTexts = [
   "Web Development",
-  "AI Solutions", 
+  "AI Solutions",
   "Cloud Platforms",
   "Digital Transformation",
 ];
@@ -28,17 +28,16 @@ export const HeroSection = () => {
       <div className="absolute inset-0 bg-gradient-to-br from-background via-white to-primary/5" />
       <div className="absolute top-0 left-0 w-[900px] h-[900px] bg-[radial-gradient(ellipse_at_center,hsl(var(--primary)/0.08),transparent_60%)] -translate-x-1/4 -translate-y-1/4" />
       <div className="absolute bottom-0 right-0 w-[700px] h-[700px] bg-[radial-gradient(ellipse_at_center,hsl(var(--accent)/0.06),transparent_60%)] translate-x-1/4 translate-y-1/4" />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-[radial-gradient(ellipse_at_center,hsl(var(--primary)/0.04),transparent_70%)]" />
-      
+
       {/* Dot grid */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,hsl(var(--foreground)/0.03)_1px,transparent_0)] bg-[size:32px_32px] [mask-image:radial-gradient(ellipse_80%_60%_at_50%_40%,#000_50%,transparent_100%)]" />
 
       {/* Logo watermark */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-        <img src="/logo.png" alt="" className="w-[600px] h-[600px] object-contain opacity-[0.03]" draggable={false} />
+        <img src="/logo.png" alt="" className="w-[600px] h-[600px] object-contain opacity-[0.02]" draggable={false} />
       </div>
 
-      {/* Floating gradient blobs */}
+      {/* Floating blobs */}
       <motion.div
         animate={{ y: [0, -30, 0], x: [0, 15, 0] }}
         transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
@@ -70,20 +69,11 @@ export const HeroSection = () => {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.1 }}
-              className="font-heading text-4xl sm:text-5xl lg:text-[3.5rem] font-bold tracking-tight mb-2 leading-[1.1] text-foreground"
+              className="font-heading text-4xl sm:text-5xl lg:text-[3.5rem] font-bold tracking-tight mb-3 leading-[1.1] text-foreground"
             >
-              Build Faster. Scale Smarter.
+              Transforming Ideas Into{" "}
+              <span className="gradient-text">Scalable Digital Platforms</span>
             </motion.h1>
-            
-            <motion.h2
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.15 }}
-              className="font-heading text-xl sm:text-2xl lg:text-[1.75rem] font-semibold tracking-tight mb-4 leading-[1.2]"
-            >
-              <span className="gradient-text">Next-Generation Digital Platforms</span>{" "}
-              <span className="text-muted-foreground font-normal text-lg">for Modern Businesses</span>
-            </motion.h2>
 
             {/* Rotating Text */}
             <motion.div
@@ -121,13 +111,22 @@ export const HeroSection = () => {
               transition={{ duration: 0.7, delay: 0.4 }}
               className="flex flex-col sm:flex-row items-start gap-3"
             >
-              <Button size="lg" asChild className="group px-7 h-12 text-base font-semibold bg-primary text-primary-foreground hover:bg-accent hover:shadow-[0_0_30px_-5px_hsl(var(--primary)/0.35)] transition-all duration-300">
+              <Button
+                size="lg"
+                asChild
+                className="group px-7 h-12 text-base font-semibold bg-primary text-primary-foreground shadow-[0_0_0_0_hsl(var(--primary)/0.4)] hover:shadow-[0_0_30px_-5px_hsl(var(--primary)/0.5)] transition-all duration-500"
+              >
                 <Link to="/contact">
                   Start Your Project
                   <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
                 </Link>
               </Button>
-              <Button size="lg" variant="outline" asChild className="group h-12 text-base border-primary/30 text-primary hover:border-primary hover:bg-primary/5 transition-all duration-300">
+              <Button
+                size="lg"
+                variant="outline"
+                asChild
+                className="group h-12 text-base border-border text-foreground hover:border-primary/40 hover:bg-primary/5 transition-all duration-300"
+              >
                 <a href={getWhatsAppUrl()} target="_blank" rel="noopener noreferrer">
                   <MessageCircle className="mr-2 w-4 h-4" />
                   Chat on WhatsApp
@@ -174,7 +173,8 @@ export const HeroSection = () => {
                 key={card.title}
                 animate={card.anim}
                 transition={{ duration: card.dur, repeat: Infinity, ease: "easeInOut", delay: card.delay || 0 }}
-                className={`absolute ${card.pos} bg-white/90 backdrop-blur-xl p-5 ${card.w} rounded-2xl border border-border shadow-lg hover:shadow-xl hover:border-primary/20 transition-all duration-300`}
+                whileHover={{ y: -6, scale: 1.03 }}
+                className={`absolute ${card.pos} glass-card p-5 ${card.w} cursor-default`}
               >
                 <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center mb-3">
                   <card.icon className="w-5 h-5 text-primary" />
@@ -190,8 +190,8 @@ export const HeroSection = () => {
       </div>
 
       {/* Scroll indicator */}
-      <motion.div 
-        animate={{ y: [0, 8, 0] }} 
+      <motion.div
+        animate={{ y: [0, 8, 0] }}
         transition={{ duration: 2, repeat: Infinity }}
         className="absolute bottom-8 left-1/2 -translate-x-1/2"
       >

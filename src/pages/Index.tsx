@@ -18,6 +18,7 @@ import { CTASection } from "@/components/home/CTASection";
 import { FutureFeaturesSection } from "@/components/home/FutureFeaturesSection";
 import { EnquiryModal } from "@/components/home/EnquiryModal";
 import { Helmet } from "react-helmet-async";
+import { seoConfig } from "@/config/siteConfig";
 
 const Index = () => {
   const [showAutoEnquiry, setShowAutoEnquiry] = useState(false);
@@ -36,8 +37,8 @@ const Index = () => {
   return (
     <Layout>
       <Helmet>
-        <title>Aradhya NextGen Technologies | Web, AI & Cloud Solutions</title>
-        <meta name="description" content="We build scalable web platforms, AI automation systems, and cloud solutions for startups and enterprises in Bangalore, India." />
+        <title>{seoConfig.home.title}</title>
+        <meta name="description" content={seoConfig.home.description} />
         <meta name="keywords" content="web development, React websites, AI automation, cloud platforms, digital transformation, Bangalore, India" />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://aradhyanextgen.lovable.app/" />
