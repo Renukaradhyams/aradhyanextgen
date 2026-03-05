@@ -1,18 +1,10 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { getWhatsAppUrl } from "@/config/contactInfo";
-
-
-const navLinks = [
-  { href: "/", label: "Home" },
-  { href: "/solutions", label: "Solutions" },
-  { href: "/about", label: "About" },
-  { href: "/careers", label: "Careers" },
-  { href: "/contact", label: "Contact" },
-];
+import { navigationConfig } from "@/config/siteConfig";
 
 export const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -42,84 +34,126 @@ export const Navbar = () => {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.5 }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         scrolled
-          ? "bg-white/80 backdrop-blur-xl border-b border-border/50 py-2"
+          ? "bg-white/70 backdrop-blur-2xl border-b border-border/40 shadow-[0_1px_3px_0_rgba(0,0,0,0.05),0_4px_24px_-2px_rgba(0,0,0,0.04)] py-2"
           : "bg-transparent py-4"
       }`}
     >
       <div className="container mx-auto px-4 flex items-center justify-between">
+        {/* Logo — 30-40% larger */}
         <a href="/" onClick={handleLogoClick} className="flex items-center gap-3 group">
-          <img src="/logo.png" alt="Aradhya NextGen Technologies" className="w-12 h-12 object-contain" />
+          <img
+            src="/logo.png"
+            alt="Aradhya NextGen Technologies"
+            className="w-[52px] h-[52px] object-contain transition-transform duration-300 group-hover:scale-105"
+          />
           <div className="flex flex-col">
-            <span className="font-heading font-bold text-xl text-foreground leading-tight">
+            <span className="font-heading font-bold text-[22px] text-foreground leading-tight">
               Aradhya NextGen
             </span>
-            <span className="text-[10px] text-muted-foreground font-medium tracking-wider uppercase">Technologies</span>
+            <span className="text-[10px] text-muted-foreground font-medium tracking-[0.15em] uppercase">
+              Technologies
+            </span>
           </div>
         </a>
 
-        <div className="hidden md:flex items-center gap-8">
-          {navLinks.map((link) => (
-            <Link
-              key={link.href}
-              to={link.href}
-              className={`relative text-sm font-medium transition-colors hover:text-primary ${
-                location.pathname === link.href ? "text-primary" : "text-muted-foreground"
-              }`}
-            >
-              {link.label}
-              {location.pathname === link.href && (
-                <motion.div layoutId="navbar-indicator" className="absolute -bottom-1 left-0 right-0 h-0.5 bg-primary rounded-full" />
-              )}
-            </Link>
-          ))}
+        {/* Desktop Nav Links */}
+        <div className="hidden md:flex items-center gap-1">
+          {navigationConfig.map((link) => {
+            const isActive = location.pathname === link.href;
+            return (
+              <Link
+                key={link.href}
+                to={link.href}
+                className={`relative px-4 py-2 text-sm font-medium rounded-lg transition-colors duration-200 ${
+                  isActive
+                    ? "text-primary"
+                    : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
+                }`}
+              >
+                {link.name}
+                {isActive && (
+                  <motion.div
+                    layoutId="navbar-indicator"
+                    className="absolute bottom-0 left-3 right-3 h-[2px] bg-primary rounded-full"
+                    transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                  />
+                )}
+              </Link>
+            );
+          })}
         </div>
 
+        {/* Right Side CTAs */}
         <div className="hidden md:flex items-center gap-3">
-          <Button variant="ghost" size="sm" asChild className="text-muted-foreground hover:text-primary">
-            <a href={getWhatsAppUrl()} target="_blank" rel="noopener noreferrer">WhatsApp</a>
+          <Button
+            variant="ghost"
+            size="sm"
+            asChild
+            className="text-muted-foreground hover:text-primary transition-colors"
+          >
+            <a href={getWhatsAppUrl()} target="_blank" rel="noopener noreferrer">
+              WhatsApp
+            </a>
           </Button>
-          <Button size="sm" asChild className="bg-primary text-primary-foreground hover:bg-primary/90 hover:shadow-[0_0_20px_-5px_hsl(var(--primary)/0.4)] transition-all duration-300">
-            <Link to="/enquiry">Enquire Now</Link>
+          <Button
+            size="sm"
+            asChild
+            className="relative group bg-primary text-primary-foreground font-semibold shadow-[0_0_0_0_hsl(var(--primary)/0.4)] hover:shadow-[0_0_20px_-2px_hsl(var(--primary)/0.5)] transition-all duration-500"
+          >
+            <Link to="/enquiry">
+              Get Started
+              <ArrowRight className="ml-1.5 w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" />
+            </Link>
           </Button>
         </div>
 
-        <div className="flex items-center gap-2 md:hidden">
-          <button onClick={() => setIsOpen(!isOpen)} className="p-2 text-foreground">
-            {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-          </button>
-        </div>
+        {/* Mobile Toggle */}
+        <button
+          onClick={() => setIsOpen(!isOpen)}
+          className="p-2 text-foreground md:hidden rounded-lg hover:bg-muted/50 transition-colors"
+        >
+          {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+        </button>
       </div>
 
+      {/* Mobile Menu */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-white/95 backdrop-blur-xl mt-2 mx-4 rounded-xl overflow-hidden border border-border"
+            transition={{ duration: 0.25 }}
+            className="md:hidden bg-white/95 backdrop-blur-2xl mt-2 mx-4 rounded-2xl overflow-hidden border border-border shadow-lg"
           >
-            <div className="p-4 flex flex-col gap-2">
-              {navLinks.map((link) => (
-                <Link key={link.href} to={link.href}
-                  className={`p-3 rounded-lg transition-colors ${location.pathname === link.href ? "bg-primary/10 text-primary" : "text-muted-foreground hover:bg-muted"}`}>
-                  {link.label}
+            <div className="p-4 flex flex-col gap-1">
+              {navigationConfig.map((link) => (
+                <Link
+                  key={link.href}
+                  to={link.href}
+                  className={`p-3 rounded-xl text-sm font-medium transition-colors ${
+                    location.pathname === link.href
+                      ? "bg-primary/10 text-primary"
+                      : "text-muted-foreground hover:bg-muted/50 hover:text-foreground"
+                  }`}
+                >
+                  {link.name}
                 </Link>
               ))}
-              <div className="pt-2 mt-2 border-t border-border flex flex-col gap-2">
+              <div className="pt-3 mt-3 border-t border-border flex flex-col gap-2">
                 <Button variant="outline" asChild className="w-full">
                   <a href={getWhatsAppUrl()} target="_blank" rel="noopener noreferrer">WhatsApp</a>
                 </Button>
                 <Button className="w-full" asChild>
-                  <Link to="/enquiry">Enquire Now</Link>
+                  <Link to="/enquiry">Get Started</Link>
                 </Button>
               </div>
             </div>
           </motion.div>
         )}
       </AnimatePresence>
-      
     </motion.nav>
   );
 };
