@@ -20,6 +20,19 @@ const industries = [
   { icon: Package, name: "Product Management", color: "text-teal-500" },
 ];
 
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.06, delayChildren: 0.1 },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 30, scale: 0.95 },
+  visible: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] as const } },
+};
+
 export const IndustriesSection = () => {
   return (
     <section className="py-24 relative overflow-hidden">
@@ -42,26 +55,32 @@ export const IndustriesSection = () => {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 max-w-5xl mx-auto">
-          {industries.map((industry, index) => (
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 max-w-5xl mx-auto"
+        >
+          {industries.map((industry) => (
             <motion.div
               key={industry.name}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.05 }}
-              whileHover={{ y: -6, scale: 1.03 }}
+              variants={itemVariants}
+              whileHover={{ y: -8, scale: 1.04 }}
               className="group cursor-default"
             >
-              <div className="bg-card/80 backdrop-blur-sm border border-border rounded-2xl p-6 text-center hover:border-primary/30 hover:shadow-lg transition-all duration-300">
-                <div className="w-14 h-14 mx-auto mb-4 rounded-xl bg-primary/5 flex items-center justify-center group-hover:bg-primary/10 group-hover:scale-110 transition-all duration-300">
+              <div className="bg-card/80 backdrop-blur-sm border border-border rounded-2xl p-6 text-center hover:border-primary/30 hover:shadow-xl transition-all duration-500">
+                <motion.div
+                  whileHover={{ scale: 1.2, rotate: 5 }}
+                  className="w-14 h-14 mx-auto mb-4 rounded-xl bg-primary/5 flex items-center justify-center group-hover:bg-primary/10 transition-all duration-300"
+                >
                   <industry.icon className={`w-7 h-7 ${industry.color} transition-colors`} />
-                </div>
+                </motion.div>
                 <h3 className="font-heading font-medium text-sm text-foreground">{industry.name}</h3>
               </div>
             </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );
