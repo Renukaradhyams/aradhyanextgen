@@ -6,7 +6,8 @@ import { SolutionSelector } from "@/components/home/SolutionSelector";
 import { ServicesPreview } from "@/components/home/ServicesPreview";
 import { ComparisonSection } from "@/components/home/ComparisonSection";
 import { ProcessSection } from "@/components/home/ProcessSection";
-import { TechStackSection } from "@/components/home/TechStackSection";
+import { IndustriesSection } from "@/components/home/IndustriesSection";
+import { TechExpertiseSection } from "@/components/home/TechExpertiseSection";
 import { CaseStudiesSection } from "@/components/home/CaseStudiesSection";
 import { FounderSection } from "@/components/home/FounderSection";
 import { PricingSection } from "@/components/home/PricingSection";
@@ -23,20 +24,16 @@ const Index = () => {
         <title>Aradhya NextGen Technologies | Web, AI & Cloud Solutions</title>
         <meta name="description" content="We build scalable web platforms, AI automation systems, and cloud solutions for startups and enterprises in Bangalore, India." />
         <meta name="keywords" content="web development, React websites, AI automation, cloud platforms, digital transformation, Bangalore, India" />
-        
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://aradhyanextgen.lovable.app/" />
         <meta property="og:title" content="Aradhya NextGen Technologies | Web, AI & Cloud Solutions" />
         <meta property="og:description" content="We build scalable web platforms, AI automation systems, and cloud solutions for startups and enterprises." />
         <meta property="og:site_name" content="Aradhya NextGen Technologies" />
         <meta property="og:locale" content="en_IN" />
-        
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Aradhya NextGen Technologies | Web, AI & Cloud Solutions" />
         <meta name="twitter:description" content="We build scalable web platforms, AI automation systems, and cloud solutions." />
-        
         <link rel="canonical" href="https://aradhyanextgen.lovable.app/" />
-        
         <script type="application/ld+json">{JSON.stringify({
           "@context": "https://schema.org",
           "@type": "Organization",
@@ -56,7 +53,8 @@ const Index = () => {
       <ServicesPreview />
       <ComparisonSection />
       <ProcessSection />
-      <TechStackSection />
+      <IndustriesSection />
+      <TechExpertiseSection />
       <CaseStudiesSection />
       <FounderSection />
       <FutureFeaturesSection />
