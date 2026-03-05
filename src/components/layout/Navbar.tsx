@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -17,6 +17,7 @@ export const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
@@ -27,6 +28,12 @@ export const Navbar = () => {
   useEffect(() => {
     setIsOpen(false);
   }, [location]);
+
+  const handleLogoClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    navigate("/");
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
   return (
     <motion.nav
@@ -40,15 +47,15 @@ export const Navbar = () => {
       }`}
     >
       <div className="container mx-auto px-4 flex items-center justify-between">
-        <Link to="/" className="flex items-center gap-3 group">
-          <img src="/logo.png" alt="Aradhya NextGen Technologies" className="w-11 h-11 object-contain" />
+        <a href="/" onClick={handleLogoClick} className="flex items-center gap-3 group">
+          <img src="/logo.png" alt="Aradhya NextGen Technologies" className="w-12 h-12 object-contain" />
           <div className="flex flex-col">
-            <span className="font-heading font-bold text-lg text-foreground leading-tight">
+            <span className="font-heading font-bold text-xl text-foreground leading-tight">
               Aradhya NextGen
             </span>
             <span className="text-[10px] text-muted-foreground font-medium tracking-wider uppercase">Technologies</span>
           </div>
-        </Link>
+        </a>
 
         <div className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => (

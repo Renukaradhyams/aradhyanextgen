@@ -2,21 +2,28 @@ import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight, Star, Quote } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { getActiveTestimonials, testimonialSettings } from "@/config/testimonialsConfig";
+
+const testimonials = [
+  { name: "Rahul Sharma", role: "Founder", company: "TechStart", content: "Professional team with a modern approach. They delivered exactly what we envisioned for our startup. The React-based website loads incredibly fast!", rating: 5 },
+  { name: "Priya Patel", role: "Owner", company: "Style Boutique", content: "Fast delivery and great design! Our new website has significantly increased customer inquiries. The WhatsApp integration was a game-changer.", rating: 5 },
+  { name: "Amit Kumar", role: "CEO", company: "Digital Agency", content: "The perfect website for our business. Clean code, beautiful design, and excellent support. They truly understand modern web development.", rating: 5 },
+  { name: "GalaxyPower Solar", role: "Management", company: "GalaxyPower Solar", content: "Aradhya NextGen delivered a fast, modern website that perfectly represents our solar solutions online.", rating: 5 },
+  { name: "Karunadu LED", role: "Management", company: "Karunadu LED", content: "The team built a clean, professional website that showcases our lighting products beautifully.", rating: 5 },
+  { name: "Vikram Singh", role: "Director", company: "Singh Enterprises", content: "Aradhya NextGen transformed our outdated website into a modern, fast-loading platform. Our online leads increased by 200% within months!", rating: 5 },
+];
 
 export const TestimonialsSection = () => {
   const [current, setCurrent] = useState(0);
   const [autoPlay, setAutoPlay] = useState(true);
-  const testimonials = getActiveTestimonials();
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
     if (!autoPlay) return;
     intervalRef.current = setInterval(() => {
       setCurrent((prev) => (prev + 1) % testimonials.length);
-    }, testimonialSettings.autoSlideInterval);
+    }, 5000);
     return () => { if (intervalRef.current) clearInterval(intervalRef.current); };
-  }, [autoPlay, testimonials.length]);
+  }, [autoPlay]);
 
   const next = () => { setAutoPlay(false); setCurrent((prev) => (prev + 1) % testimonials.length); };
   const prev = () => { setAutoPlay(false); setCurrent((prev) => (prev - 1 + testimonials.length) % testimonials.length); };
@@ -37,7 +44,7 @@ export const TestimonialsSection = () => {
         <div className="max-w-3xl mx-auto relative">
           <AnimatePresence mode="wait">
             <motion.div key={current} initial={{ opacity: 0, x: 40 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -40 }} transition={{ duration: 0.4 }}>
-              <div className="bg-white p-8 md:p-12 rounded-2xl border border-border shadow-lg">
+              <div className="bg-white/80 backdrop-blur-sm p-8 md:p-12 rounded-2xl border border-border shadow-lg">
                 <Quote className="w-10 h-10 text-primary/20 mx-auto mb-6" />
                 <p className="text-lg md:text-xl text-foreground mb-8 leading-relaxed font-medium text-center">
                   "{testimonials[current].content}"

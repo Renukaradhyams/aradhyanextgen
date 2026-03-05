@@ -6,7 +6,7 @@ import { getWhatsAppUrl } from "@/config/contactInfo";
 const pricingPlans = [
   {
     name: "Starter",
-    description: "Perfect for personal portfolios & landing pages",
+    tagline: "Best for individuals, freelancers, and landing pages.",
     price: "₹15,000",
     priceRange: "₹15,000 - ₹25,000",
     features: ["Single page website", "Mobile responsive", "Contact form / WhatsApp", "Basic SEO setup", "1 revision round", "3-5 days delivery"],
@@ -14,7 +14,7 @@ const pricingPlans = [
   },
   {
     name: "Business",
-    description: "Ideal for businesses & service providers",
+    tagline: "Perfect for growing businesses and service companies.",
     price: "₹35,000",
     priceRange: "₹25,000 - ₹50,000",
     features: ["Multi-page website (5-7)", "Custom React development", "Advanced animations", "Full SEO optimization", "EmailJS integration", "2 revision rounds", "1-2 weeks delivery"],
@@ -22,7 +22,7 @@ const pricingPlans = [
   },
   {
     name: "Premium",
-    description: "For complex web applications & e-commerce",
+    tagline: "Ideal for startups and companies needing custom platforms.",
     price: "Custom",
     priceRange: "₹50,000+",
     features: ["Custom web application", "E-commerce features", "Advanced functionality", "Database integration", "Admin panel (optional)", "Unlimited revisions", "Priority support"],
@@ -54,15 +54,15 @@ export const PricingSection = () => {
             <motion.div key={index} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }} transition={{ duration: 0.5, delay: index * 0.1 }}
               whileHover={{ y: -5 }}
-              className={`relative bg-white p-8 rounded-2xl border shadow-sm hover:shadow-xl transition-all duration-300 ${plan.popular ? "border-primary/50 shadow-glow scale-[1.02]" : "border-border"}`}>
+              className={`relative bg-white/80 backdrop-blur-sm p-8 rounded-2xl border shadow-sm hover:shadow-xl transition-all duration-300 ${plan.popular ? "border-primary/50 shadow-glow scale-[1.02]" : "border-border"}`}>
               {plan.popular && (
                 <div className="absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1 bg-primary text-primary-foreground text-sm font-semibold rounded-full flex items-center gap-1 shadow-md">
                   <Star className="w-4 h-4" fill="currentColor" />Most Popular
                 </div>
               )}
               <div className="text-center mb-8">
-                <h3 className="font-heading font-bold text-2xl mb-2 text-foreground">{plan.name}</h3>
-                <p className="text-muted-foreground text-sm mb-4">{plan.description}</p>
+                <h3 className="font-heading font-bold text-2xl mb-1 text-foreground">{plan.name}</h3>
+                <p className="text-muted-foreground text-sm mb-4">{plan.tagline}</p>
                 <div className="text-4xl font-bold font-heading gradient-text mb-1">{plan.price}</div>
                 <p className="text-muted-foreground text-sm">{plan.priceRange}</p>
               </div>

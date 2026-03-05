@@ -24,7 +24,7 @@ export const FutureFeaturesSection = () => {
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/8 border border-primary/15 mb-6">
             <Sparkles className="w-4 h-4 text-primary" /><span className="text-sm text-primary font-medium">Innovation Roadmap</span>
           </div>
-          <h2 className="font-heading text-3xl md:text-4xl font-bold mb-4 text-foreground">Future <span className="gradient-text">Technologies</span></h2>
+          <h2 className="font-heading text-3xl md:text-4xl font-bold mb-4 text-foreground">Technology Innovation <span className="gradient-text">Roadmap</span></h2>
           <p className="text-muted-foreground text-lg">Explore our technology roadmap and upcoming innovations.</p>
         </motion.div>
 
@@ -33,30 +33,34 @@ export const FutureFeaturesSection = () => {
             <motion.div key={tech.id} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }} transition={{ duration: 0.5, delay: index * 0.08 }}
               whileHover={{ y: -5 }} className="group">
-              <div className="bg-white p-6 h-full flex flex-col rounded-2xl border border-border group-hover:border-primary/30 shadow-sm group-hover:shadow-lg transition-all duration-300">
-                <div className="flex items-center justify-between mb-4">
-                  <div className="w-11 h-11 rounded-xl bg-primary/10 flex items-center justify-center group-hover:bg-primary/15 transition-colors">
-                    <tech.icon className="w-5 h-5 text-primary" />
-                  </div>
-                  <span className={`px-2.5 py-1 rounded-full text-[10px] font-semibold border ${statusColors[tech.status]}`}>
-                    {statusLabels[tech.status]}
-                  </span>
-                </div>
-                <h3 className="font-heading font-bold text-lg mb-2 text-foreground">{tech.title}</h3>
-                <p className="text-muted-foreground text-sm mb-4 flex-grow leading-relaxed">{tech.description}</p>
-                <div className="space-y-1 mb-4">
-                  {tech.features.map((feature, i) => (
-                    <div key={i} className="flex items-center gap-2 text-xs text-muted-foreground">
-                      <div className="w-1 h-1 rounded-full bg-primary" />{feature}
+              <div className="relative bg-white/80 backdrop-blur-sm p-6 h-full flex flex-col rounded-2xl border border-border group-hover:border-primary/30 shadow-sm group-hover:shadow-lg transition-all duration-300 overflow-hidden">
+                {/* Animated border glow */}
+                <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-primary/5 to-accent/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="relative z-10 flex flex-col h-full">
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="w-11 h-11 rounded-xl bg-primary/10 flex items-center justify-center group-hover:bg-primary/15 group-hover:scale-110 transition-all duration-300">
+                      <tech.icon className="w-5 h-5 text-primary" />
                     </div>
-                  ))}
-                </div>
-                {tech.eta && (
-                  <div className="pt-3 border-t border-border">
-                    <span className="text-xs text-muted-foreground">Expected: </span>
-                    <span className="text-xs text-primary font-semibold">{tech.eta}</span>
+                    <span className={`px-2.5 py-1 rounded-full text-[10px] font-semibold border ${statusColors[tech.status]}`}>
+                      {statusLabels[tech.status]}
+                    </span>
                   </div>
-                )}
+                  <h3 className="font-heading font-bold text-lg mb-2 text-foreground">{tech.title}</h3>
+                  <p className="text-muted-foreground text-sm mb-4 flex-grow leading-relaxed">{tech.description}</p>
+                  <div className="space-y-1 mb-4">
+                    {tech.features.map((feature, i) => (
+                      <div key={i} className="flex items-center gap-2 text-xs text-muted-foreground">
+                        <div className="w-1 h-1 rounded-full bg-primary" />{feature}
+                      </div>
+                    ))}
+                  </div>
+                  {tech.eta && (
+                    <div className="pt-3 border-t border-border">
+                      <span className="text-xs text-muted-foreground">Expected: </span>
+                      <span className="text-xs text-primary font-semibold">{tech.eta}</span>
+                    </div>
+                  )}
+                </div>
               </div>
             </motion.div>
           ))}

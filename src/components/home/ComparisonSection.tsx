@@ -19,13 +19,13 @@ export const ComparisonSection = () => {
           className="text-center max-w-2xl mx-auto mb-16">
           <span className="inline-block px-4 py-1.5 rounded-full bg-primary/8 text-primary text-sm font-medium mb-4">Why React</span>
           <h2 className="font-heading text-3xl md:text-4xl font-bold mb-4 text-foreground">Why <span className="gradient-text">React Websites</span>?</h2>
-          <p className="text-muted-foreground text-lg">See how modern React websites outperform traditional websites in every metric.</p>
+          <p className="text-muted-foreground text-lg">Modern React websites outperform traditional websites in performance, scalability, and user experience. Deliver lightning-fast load speeds, better SEO performance, and a dynamic user experience.</p>
         </motion.div>
 
         <div className="max-w-4xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
           {/* Browser mockup */}
           <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}
-            className="bg-white rounded-2xl border border-border shadow-lg overflow-hidden">
+            className="bg-white/80 backdrop-blur-sm rounded-2xl border border-border shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
             <div className="bg-muted/50 px-4 py-3 flex items-center gap-2 border-b border-border">
               <div className="flex gap-1.5">
                 <div className="w-3 h-3 rounded-full bg-red-400" />
@@ -46,12 +46,16 @@ export const ComparisonSection = () => {
                 <div className="font-heading font-bold text-foreground">React Performance</div>
               </div>
               <div className="space-y-3">
-                <div className="flex justify-between text-sm"><span className="text-muted-foreground">Load Time</span><span className="font-semibold text-primary">0.8s</span></div>
-                <div className="h-2 bg-muted rounded-full overflow-hidden"><motion.div initial={{ width: 0 }} whileInView={{ width: "95%" }} viewport={{ once: true }} transition={{ duration: 1.5, delay: 0.5 }} className="h-full bg-gradient-to-r from-primary to-accent rounded-full" /></div>
-                <div className="flex justify-between text-sm"><span className="text-muted-foreground">SEO Score</span><span className="font-semibold text-primary">98/100</span></div>
-                <div className="h-2 bg-muted rounded-full overflow-hidden"><motion.div initial={{ width: 0 }} whileInView={{ width: "98%" }} viewport={{ once: true }} transition={{ duration: 1.5, delay: 0.7 }} className="h-full bg-gradient-to-r from-primary to-accent rounded-full" /></div>
-                <div className="flex justify-between text-sm"><span className="text-muted-foreground">Conversion Rate</span><span className="font-semibold text-primary">3.2x</span></div>
-                <div className="h-2 bg-muted rounded-full overflow-hidden"><motion.div initial={{ width: 0 }} whileInView={{ width: "88%" }} viewport={{ once: true }} transition={{ duration: 1.5, delay: 0.9 }} className="h-full bg-gradient-to-r from-primary to-accent rounded-full" /></div>
+                {[
+                  { label: "Load Time", value: "0.8s", width: "95%" },
+                  { label: "SEO Score", value: "98/100", width: "98%" },
+                  { label: "Conversion Rate", value: "3.2x", width: "88%" },
+                ].map((item) => (
+                  <div key={item.label}>
+                    <div className="flex justify-between text-sm"><span className="text-muted-foreground">{item.label}</span><span className="font-semibold text-primary">{item.value}</span></div>
+                    <div className="h-2 bg-muted rounded-full overflow-hidden"><motion.div initial={{ width: 0 }} whileInView={{ width: item.width }} viewport={{ once: true }} transition={{ duration: 1.5, delay: 0.5 }} className="h-full bg-gradient-to-r from-primary to-accent rounded-full" /></div>
+                  </div>
+                ))}
               </div>
             </div>
           </motion.div>
@@ -61,7 +65,8 @@ export const ComparisonSection = () => {
             className="space-y-3">
             {comparisons.map((item, index) => (
               <motion.div key={index} initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: index * 0.08 }}
-                className="bg-white rounded-xl p-4 border border-border shadow-sm">
+                whileHover={{ x: 4 }}
+                className="bg-white/80 backdrop-blur-sm rounded-xl p-4 border border-border shadow-sm hover:border-primary/20 hover:shadow-md transition-all duration-300">
                 <div className="font-heading font-semibold text-sm mb-2 text-foreground">{item.feature}</div>
                 <div className="grid grid-cols-2 gap-3">
                   <div className="flex items-center gap-2 text-xs">
