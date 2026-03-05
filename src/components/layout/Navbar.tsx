@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { getWhatsAppUrl } from "@/config/contactInfo";
+import { EnquiryModal } from "@/components/home/EnquiryModal";
 
 const navLinks = [
   { href: "/", label: "Home" },
@@ -16,6 +17,7 @@ const navLinks = [
 export const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [showEnquiry, setShowEnquiry] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -78,8 +80,8 @@ export const Navbar = () => {
           <Button variant="ghost" size="sm" asChild className="text-muted-foreground hover:text-primary">
             <a href={getWhatsAppUrl()} target="_blank" rel="noopener noreferrer">WhatsApp</a>
           </Button>
-          <Button size="sm" asChild className="bg-primary text-primary-foreground hover:bg-primary/90 hover:shadow-[0_0_20px_-5px_hsl(var(--primary)/0.4)] transition-all duration-300">
-            <Link to="/contact">Get Started</Link>
+          <Button size="sm" onClick={() => setShowEnquiry(true)} className="bg-primary text-primary-foreground hover:bg-primary/90 hover:shadow-[0_0_20px_-5px_hsl(var(--primary)/0.4)] transition-all duration-300">
+            Enquire Now
           </Button>
         </div>
 
@@ -109,14 +111,15 @@ export const Navbar = () => {
                 <Button variant="outline" asChild className="w-full">
                   <a href={getWhatsAppUrl()} target="_blank" rel="noopener noreferrer">WhatsApp</a>
                 </Button>
-                <Button asChild className="w-full">
-                  <Link to="/contact">Get Started</Link>
+                <Button className="w-full" onClick={() => { setShowEnquiry(true); setIsOpen(false); }}>
+                  Enquire Now
                 </Button>
               </div>
             </div>
           </motion.div>
         )}
       </AnimatePresence>
+      <EnquiryModal isOpen={showEnquiry} onClose={() => setShowEnquiry(false)} />
     </motion.nav>
   );
 };
