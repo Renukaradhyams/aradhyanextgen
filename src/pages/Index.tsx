@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { Layout } from "@/components/layout/Layout";
 import { HeroSection } from "@/components/home/HeroSection";
 import { StatsSection } from "@/components/home/StatsSection";
@@ -15,9 +16,23 @@ import { TestimonialsSection } from "@/components/home/TestimonialsSection";
 import { FAQSection } from "@/components/home/FAQSection";
 import { CTASection } from "@/components/home/CTASection";
 import { FutureFeaturesSection } from "@/components/home/FutureFeaturesSection";
+import { EnquiryModal } from "@/components/home/EnquiryModal";
 import { Helmet } from "react-helmet-async";
 
 const Index = () => {
+  const [showAutoEnquiry, setShowAutoEnquiry] = useState(false);
+
+  useEffect(() => {
+    const hasVisited = sessionStorage.getItem("enquiry_shown");
+    if (!hasVisited) {
+      const timer = setTimeout(() => {
+        setShowAutoEnquiry(true);
+        sessionStorage.setItem("enquiry_shown", "true");
+      }, 2000);
+      return () => clearTimeout(timer);
+    }
+  }, []);
+
   return (
     <Layout>
       <Helmet>
@@ -62,6 +77,7 @@ const Index = () => {
       <TestimonialsSection />
       <FAQSection />
       <CTASection />
+      <EnquiryModal isOpen={showAutoEnquiry} onClose={() => setShowAutoEnquiry(false)} />
     </Layout>
   );
 };
