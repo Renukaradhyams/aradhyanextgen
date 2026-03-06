@@ -28,10 +28,10 @@ export const ScrollToTop = () => {
           initial={{ opacity: 0, scale: 0, rotate: -180 }}
           animate={{ opacity: 1, scale: 1, rotate: 0 }}
           exit={{ opacity: 0, scale: 0, rotate: 180 }}
-          whileHover={{ scale: 1.15, rotate: 10 }}
+          whileHover={{ scale: 1.15, rotate: 10, boxShadow: "0 0 24px -4px hsl(var(--primary) / 0.5)" }}
           whileTap={{ scale: 0.85 }}
           onClick={scrollToTop}
-          className="fixed bottom-24 right-6 z-40 w-12 h-12 bg-primary text-primary-foreground rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-shadow"
+          className="fixed bottom-24 right-6 z-40 w-12 h-12 bg-primary text-primary-foreground rounded-2xl flex items-center justify-center shadow-[0_4px_20px_-4px_hsl(var(--primary)/0.4)] transition-shadow"
           aria-label="Scroll to top"
         >
           <ArrowUp className="w-5 h-5" />

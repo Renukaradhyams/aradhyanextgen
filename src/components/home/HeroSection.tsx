@@ -181,7 +181,7 @@ export const HeroSection = () => {
                 key={card.title}
                 animate={card.anim}
                 transition={{ duration: card.dur, repeat: Infinity, ease: "easeInOut", delay: card.delay || 0 }}
-                whileHover={{ y: -10, scale: 1.06, rotate: 0, boxShadow: "0 20px 40px -10px rgba(0,0,0,0.15)" }}
+                whileHover={{ y: -12, scale: 1.06, rotate: 0, boxShadow: "0 24px 48px -12px rgba(0,0,0,0.18)" }}
                 className={`absolute ${card.pos} glass-card p-5 ${card.w} cursor-default`}
               >
                 <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center mb-3 transition-all duration-300 group-hover:scale-110">
