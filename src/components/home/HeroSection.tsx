@@ -13,10 +13,10 @@ const rotatingTexts = [
 ];
 
 const floatingCards = [
-  { icon: Globe, title: "Web Development", desc: "Modern React & Next.js applications", pos: "top-4 left-4", w: "w-56", anim: { y: [0, -25, 0], rotate: [-1, 1.5, -1] }, dur: 4 },
-  { icon: Cpu, title: "AI Automation", desc: "Smart business workflows", pos: "top-2 right-2", w: "w-52", anim: { y: [0, 30, 0], rotate: [1, -2, 1] }, dur: 5, delay: 0.5 },
-  { icon: Cloud, title: "Cloud Solutions", desc: "Scalable cloud infrastructure", pos: "bottom-24 left-12", w: "w-52", anim: { y: [0, -18, 0], x: [0, 20, 0], rotate: [-1.5, 1, -1.5] }, dur: 4.5, delay: 1 },
-  { icon: BarChart3, title: "Growth Analytics", desc: "Data-driven decisions", pos: "bottom-8 right-8", w: "w-48", anim: { y: [0, -35, 0], rotate: [1.5, -1.5, 1.5] }, dur: 6, delay: 0.3 },
+  { icon: Globe, title: "Web Development", desc: "Modern React & Next.js applications", pos: "top-4 left-4", w: "w-56", anim: { y: [0, -30, 0], rotate: [-2, 2, -2] }, dur: 5 },
+  { icon: Cpu, title: "AI Automation", desc: "Smart business workflows", pos: "top-2 right-2", w: "w-52", anim: { y: [0, 35, 0], rotate: [2, -3, 2] }, dur: 5.5, delay: 0.5 },
+  { icon: Cloud, title: "Cloud Solutions", desc: "Scalable cloud infrastructure", pos: "bottom-24 left-12", w: "w-52", anim: { y: [0, -25, 0], x: [0, 25, 0], rotate: [-2, 1.5, -2] }, dur: 5, delay: 1 },
+  { icon: BarChart3, title: "Growth Analytics", desc: "Data-driven decisions", pos: "bottom-8 right-8", w: "w-48", anim: { y: [0, -40, 0], rotate: [2, -2, 2] }, dur: 6, delay: 0.3 },
 ];
 
 export const HeroSection = () => {
