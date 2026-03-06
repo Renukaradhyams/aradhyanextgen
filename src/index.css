@@ -75,15 +75,15 @@
 
 @layer components {
   .glass {
-    @apply bg-white/70 backdrop-blur-xl border border-border rounded-2xl;
+    @apply bg-white/70 backdrop-blur-xl border border-border rounded-2xl shadow-[0_2px_15px_-3px_rgba(0,0,0,0.04),0_10px_20px_-2px_rgba(0,0,0,0.02)];
   }
 
   .glass-card {
-    @apply bg-white/80 backdrop-blur-xl border border-border rounded-2xl transition-all duration-500;
+    @apply bg-white/80 backdrop-blur-xl border border-border rounded-2xl transition-all duration-500 shadow-[0_1px_3px_rgba(0,0,0,0.04),0_6px_16px_-4px_rgba(0,0,0,0.05)];
   }
 
   .glass-card:hover {
-    @apply border-primary/30 shadow-lg;
+    @apply border-primary/30 shadow-[0_8px_30px_-6px_rgba(0,0,0,0.1)] -translate-y-1;
   }
 
   .gradient-text {
