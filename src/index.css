@@ -70,6 +70,12 @@
   body {
     @apply bg-background text-foreground antialiased;
     font-family: 'Inter', 'General Sans', sans-serif;
+    /* Subtle gradient mesh background */
+    background-image:
+      radial-gradient(ellipse at 20% 50%, hsl(var(--primary) / 0.03) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 20%, hsl(var(--accent) / 0.03) 0%, transparent 50%),
+      radial-gradient(ellipse at 50% 80%, hsl(var(--primary) / 0.02) 0%, transparent 50%);
+    background-attachment: fixed;
   }
 
   h1, h2, h3, h4, h5, h6 {

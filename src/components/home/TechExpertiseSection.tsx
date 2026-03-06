@@ -80,20 +80,27 @@ export const TechExpertiseSection = () => {
           </p>
         </motion.div>
 
-        {/* Tabs */}
-        <div className="flex flex-wrap justify-center gap-2 mb-12">
+        {/* Tabs with animated indicator */}
+        <div className="flex flex-wrap justify-center gap-2 mb-12 relative">
           {categories.map((cat) => (
             <motion.button
               key={cat.id}
               onClick={() => setActiveTab(cat.id)}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className={`px-5 py-2.5 rounded-full text-sm font-medium transition-all duration-300 ${
+              className={`relative px-5 py-2.5 rounded-full text-sm font-medium transition-all duration-300 ${
                 activeTab === cat.id
-                  ? "bg-primary text-primary-foreground shadow-[0_0_20px_-5px_hsl(var(--primary)/0.4)]"
+                  ? "bg-primary text-primary-foreground shadow-[0_0_24px_-4px_hsl(var(--primary)/0.5)]"
                   : "bg-muted text-muted-foreground hover:bg-muted/80 hover:text-foreground"
               }`}
             >
+              {activeTab === cat.id && (
+                <motion.div
+                  layoutId="tech-tab-bg"
+                  className="absolute inset-0 bg-primary rounded-full -z-10"
+                  transition={{ type: "spring", stiffness: 400, damping: 30 }}
+                />
+              )}
               {cat.label}
             </motion.button>
           ))}
@@ -115,18 +122,25 @@ export const TechExpertiseSection = () => {
                 initial={{ opacity: 0, y: 30, scale: 0.9 }}
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 transition={{ delay: index * 0.08, duration: 0.4 }}
-                whileHover={{ y: -8, scale: 1.08, rotate: 2 }}
+                whileHover={{ y: -10, scale: 1.08 }}
                 className="group cursor-default"
               >
-                <div className="bg-card/80 backdrop-blur-sm p-6 rounded-2xl text-center border border-border group-hover:border-primary/30 group-hover:shadow-xl transition-all duration-500">
-                  <motion.div
-                    className="w-14 h-14 mx-auto mb-3 rounded-xl flex items-center justify-center text-2xl"
-                    style={{ backgroundColor: `${tech.color}12` }}
-                    whileHover={{ scale: 1.15 }}
-                  >
-                    {tech.abbr}
-                  </motion.div>
-                  <h4 className="font-heading font-medium text-sm text-foreground">{tech.name}</h4>
+                <div className="relative bg-card/80 backdrop-blur-sm p-6 rounded-2xl text-center border border-border group-hover:border-primary/40 transition-all duration-500 overflow-hidden group-hover:shadow-[0_16px_40px_-10px_rgba(0,0,0,0.1)]">
+                  {/* Subtle gradient overlay on hover */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-accent/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl" />
+                  
+                  <div className="relative z-10">
+                    <motion.div
+                      className="w-14 h-14 mx-auto mb-3 rounded-xl flex items-center justify-center text-2xl transition-all duration-300"
+                      style={{ backgroundColor: `${tech.color}12` }}
+                      whileHover={{ scale: 1.15, rotate: 5 }}
+                    >
+                      <span className="group-hover:drop-shadow-[0_0_6px_rgba(0,0,0,0.2)] transition-all duration-300">
+                        {tech.abbr}
+                      </span>
+                    </motion.div>
+                    <h4 className="font-heading font-medium text-sm text-foreground">{tech.name}</h4>
+                  </div>
                 </div>
               </motion.div>
             ))}
