@@ -182,8 +182,9 @@ export default {
   		},
   		backgroundImage: {
   			'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-  			'gradient-primary': 'linear-gradient(135deg, hsl(var(--primary)), hsl(var(--accent)))',
-  			'hero-glow': 'radial-gradient(ellipse at center, hsl(var(--primary) / 0.15) 0%, transparent 70%)'
+  			'gradient-brand': 'linear-gradient(135deg, hsl(var(--brand-cyan)), hsl(var(--brand-purple)), hsl(var(--brand-pink)))',
+  			'gradient-primary': 'linear-gradient(135deg, hsl(var(--brand-cyan)), hsl(var(--brand-purple)))',
+  			'hero-glow': 'radial-gradient(ellipse at center, hsl(var(--brand-cyan) / 0.12) 0%, hsl(var(--brand-purple) / 0.06) 40%, transparent 70%)'
   		}
   	}
   },
