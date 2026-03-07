@@ -7,8 +7,8 @@ import { getWhatsAppUrl } from "@/config/contactInfo";
 export const CTASection = () => {
   return (
     <section className="py-28 relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-br from-primary/8 via-background to-accent/8" />
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[400px] bg-[radial-gradient(ellipse_at_center,hsl(var(--primary)/0.06),transparent_70%)]" />
+      <div className="absolute inset-0 bg-gradient-to-br from-[hsl(var(--brand-cyan)/0.06)] via-background to-[hsl(var(--brand-purple)/0.06)]" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[400px] bg-[radial-gradient(ellipse_at_center,hsl(var(--brand-cyan)/0.06),transparent_70%)]" />
 
       <div className="container mx-auto px-4 relative z-10">
         <motion.div
