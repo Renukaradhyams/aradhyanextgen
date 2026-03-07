@@ -104,7 +104,7 @@ export const Navbar = () => {
           <Button
             size="sm"
             asChild
-            className="relative group bg-primary text-primary-foreground font-semibold shadow-[0_0_0_0_hsl(var(--primary)/0.4)] hover:shadow-[0_0_20px_-2px_hsl(var(--primary)/0.5)] hover:scale-[1.03] transition-all duration-500"
+            className="relative group bg-primary text-primary-foreground font-semibold shadow-[0_0_0_0_hsl(var(--brand-cyan)/0.4)] hover:shadow-[0_0_20px_-2px_hsl(var(--brand-cyan)/0.5)] hover:scale-[1.03] transition-all duration-500"
           >
             <Link to="/enquiry">
               Get Started

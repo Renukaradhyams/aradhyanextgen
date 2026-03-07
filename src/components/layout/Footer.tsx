@@ -47,7 +47,7 @@ export const Footer = () => {
 
   return (
     <footer className="relative border-t border-border overflow-hidden bg-white">
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-[radial-gradient(ellipse_at_center,hsl(var(--primary)/0.03),transparent_70%)]" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-[radial-gradient(ellipse_at_center,hsl(var(--brand-cyan)/0.03),transparent_70%)]" />
 
       <motion.div
         variants={containerVariants}
