@@ -43,7 +43,7 @@ export const CTASection = () => {
             transition={{ delay: 0.4 }}
             className="flex flex-col sm:flex-row items-center justify-center gap-4"
           >
-            <Button size="lg" asChild className="group px-8 hover:shadow-[0_0_25px_-5px_hsl(var(--primary)/0.3)] hover:scale-[1.03] transition-all duration-500">
+            <Button size="lg" asChild className="group px-8 hover:shadow-[0_0_25px_-5px_hsl(var(--brand-cyan)/0.3)] hover:scale-[1.03] transition-all duration-500">
               <Link to="/contact">Start Your Project<ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1.5" /></Link>
             </Button>
             <Button size="lg" variant="outline" asChild className="border-primary/30 hover:border-primary hover:bg-primary/5 hover:scale-[1.03] text-foreground transition-all duration-300">

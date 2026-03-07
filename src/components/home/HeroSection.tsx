@@ -31,29 +31,30 @@ export const HeroSection = () => {
 
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden pt-20">
-      {/* Gradient mesh background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-background via-white to-primary/5" />
-      <div className="absolute top-0 left-0 w-[900px] h-[900px] bg-[radial-gradient(ellipse_at_center,hsl(var(--primary)/0.08),transparent_60%)] -translate-x-1/4 -translate-y-1/4" />
-      <div className="absolute bottom-0 right-0 w-[700px] h-[700px] bg-[radial-gradient(ellipse_at_center,hsl(var(--accent)/0.06),transparent_60%)] translate-x-1/4 translate-y-1/4" />
+      {/* Gradient mesh using brand colors */}
+      <div className="absolute inset-0 bg-gradient-to-br from-background via-white to-[hsl(var(--brand-cyan)/0.06)]" />
+      <div className="absolute top-0 left-0 w-[900px] h-[900px] bg-[radial-gradient(ellipse_at_center,hsl(var(--brand-cyan)/0.08),transparent_60%)] -translate-x-1/4 -translate-y-1/4" />
+      <div className="absolute bottom-0 right-0 w-[700px] h-[700px] bg-[radial-gradient(ellipse_at_center,hsl(var(--brand-purple)/0.06),transparent_60%)] translate-x-1/4 translate-y-1/4" />
+      <div className="absolute top-1/3 right-1/4 w-[400px] h-[400px] bg-[radial-gradient(ellipse_at_center,hsl(var(--brand-pink)/0.04),transparent_60%)]" />
 
       {/* Dot grid */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,hsl(var(--foreground)/0.03)_1px,transparent_0)] bg-[size:32px_32px] [mask-image:radial-gradient(ellipse_80%_60%_at_50%_40%,#000_50%,transparent_100%)]" />
 
       {/* Logo watermark */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-        <img src="/logo.png" alt="" className="w-[600px] h-[600px] object-contain opacity-[0.02]" draggable={false} />
+        <img src="/logo.png" alt="" className="w-[600px] h-[600px] object-contain opacity-[0.025]" draggable={false} />
       </div>
 
-      {/* Floating blobs */}
+      {/* Floating blobs with brand colors */}
       <motion.div
         animate={{ y: [0, -30, 0], x: [0, 15, 0] }}
         transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute top-1/4 right-1/4 w-72 h-72 bg-primary/6 rounded-full blur-[100px]"
+        className="absolute top-1/4 right-1/4 w-72 h-72 bg-[hsl(var(--brand-cyan)/0.06)] rounded-full blur-[100px]"
       />
       <motion.div
         animate={{ y: [0, 20, 0], x: [0, -10, 0] }}
         transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 2 }}
-        className="absolute bottom-1/3 left-[15%] w-56 h-56 bg-accent/5 rounded-full blur-[80px]"
+        className="absolute bottom-1/3 left-[15%] w-56 h-56 bg-[hsl(var(--brand-purple)/0.05)] rounded-full blur-[80px]"
       />
 
       <div className="container mx-auto px-4 relative z-10">
@@ -66,7 +67,7 @@ export const HeroSection = () => {
               transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
               className="mb-6"
             >
-              <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/8 border border-primary/15 text-sm text-primary font-medium">
+              <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[hsl(var(--brand-cyan)/0.08)] border border-[hsl(var(--brand-cyan)/0.15)] text-sm text-primary font-medium">
                 <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
                 Next-Gen Digital Solutions
               </span>
@@ -121,7 +122,7 @@ export const HeroSection = () => {
               <Button
                 size="lg"
                 asChild
-                className="group px-7 h-12 text-base font-semibold bg-primary text-primary-foreground shadow-[0_0_0_0_hsl(var(--primary)/0.4)] hover:shadow-[0_0_30px_-5px_hsl(var(--primary)/0.5)] hover:scale-[1.02] transition-all duration-500"
+                className="group px-7 h-12 text-base font-semibold bg-primary text-primary-foreground shadow-[0_0_0_0_hsl(var(--brand-cyan)/0.4)] hover:shadow-[0_0_30px_-5px_hsl(var(--brand-cyan)/0.5)] hover:scale-[1.02] transition-all duration-500"
               >
                 <Link to="/contact">
                   Start Your Project
@@ -132,7 +133,7 @@ export const HeroSection = () => {
                 size="lg"
                 variant="outline"
                 asChild
-                className="group h-12 text-base border-border text-foreground hover:border-primary/40 hover:bg-primary/5 hover:scale-[1.02] transition-all duration-300"
+                className="group h-12 text-base border-border text-foreground hover:border-primary/40 hover:bg-[hsl(var(--brand-cyan)/0.05)] hover:scale-[1.02] transition-all duration-300"
               >
                 <a href={getWhatsAppUrl()} target="_blank" rel="noopener noreferrer">
                   <MessageCircle className="mr-2 w-4 h-4" />
@@ -174,7 +175,8 @@ export const HeroSection = () => {
             transition={{ duration: 1, delay: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
             className="hidden lg:block relative h-[520px]"
           >
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[280px] h-[280px] bg-primary/8 rounded-full blur-[80px]" />
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[280px] h-[280px] bg-[hsl(var(--brand-cyan)/0.08)] rounded-full blur-[80px]" />
+            <div className="absolute top-1/3 left-1/3 w-[150px] h-[150px] bg-[hsl(var(--brand-purple)/0.06)] rounded-full blur-[60px]" />
 
             {floatingCards.map((card) => (
               <motion.div
@@ -184,7 +186,7 @@ export const HeroSection = () => {
                 whileHover={{ y: -12, scale: 1.06, rotate: 0, boxShadow: "0 24px 48px -12px rgba(0,0,0,0.18)" }}
                 className={`absolute ${card.pos} glass-card p-5 ${card.w} cursor-default`}
               >
-                <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center mb-3 transition-all duration-300 group-hover:scale-110">
+                <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[hsl(var(--brand-cyan)/0.15)] to-[hsl(var(--brand-purple)/0.08)] flex items-center justify-center mb-3 transition-all duration-300">
                   <card.icon className="w-5 h-5 text-primary" />
                 </div>
                 <h4 className="font-heading font-semibold text-sm mb-1 text-foreground">{card.title}</h4>
