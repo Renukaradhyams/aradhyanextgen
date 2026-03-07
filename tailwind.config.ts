@@ -86,6 +86,12 @@ export default {
   				DEFAULT: 'hsl(var(--glass-bg))',
   				border: 'hsl(var(--glass-border))'
   			},
+  			brand: {
+  				cyan: 'hsl(var(--brand-cyan))',
+  				purple: 'hsl(var(--brand-purple))',
+  				pink: 'hsl(var(--brand-pink))',
+  				gold: 'hsl(var(--brand-gold))'
+  			},
   			glow: 'hsl(var(--glow-primary))',
   			sidebar: {
   				DEFAULT: 'hsl(var(--sidebar-background))',
